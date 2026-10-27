@@ -16,13 +16,14 @@ Updated 2026-10-28, Asia/Shanghai. This is an implementation checkpoint, not a r
 | --- | --- | --- |
 | Original source and styles | Every frozen file SHA-256 checked | Actual Harness appearance in light/dark/narrow layouts |
 | Original behavior baseline | 480 original tests pass; one Windows-only test skipped on macOS | Original API/CLI services are not wired to Harness |
-| Native chat view | Ordered text/reasoning, keyed replacement/retry, tool activity, removal and stable identity tests | Native host execution, attachments, plans, usage, complete per-turn grouping |
+| Native chat view | Ordered text, reasoning through original activity disclosure, keyed replacement/retry, tool activity, removal and stable identity tests | Native host execution, attachments, plans, usage, complete per-turn grouping |
 | Session lifetime | Retain/release, provider replacement, unavailable state, stale callback and late failure tests | Reconnect with a real installed plugin |
 | Original UI through adapter | Real ChatPanel + original AgentTransport + Markdown/internal-link DOM tests | Native prompting/cancel/history/fork/model/settings/file actions |
+| Native user actions and model picker | Addressed prompt/cancel and durable-boundary fork helpers; native catalog to original model groups; stale model/effort rejection; new-session Flash default without Pro fallback | Production controller wiring and real Harness execution; no real prompts were sent |
 | Markdown boundary | Headings/tables/code/wiki aliases, scoped relative images, unload cancellation, script/handler/URL filtering and SVG geometry tests | Embeds, host file preview, physical diagrams/images and external navigation |
 | Build | Original component JS/CSS and lazy Mermaid chunks compile | Cordis Host/Client entry, bundle metadata, package audit and isolated install |
 
-Current full check: `npm run check`; 480 original tests plus 20 adaptation tests. The Markdown security tests use jsdom as recommended by DOMPurify; happy-dom remains only for the unchanged original suite. No browser or native UI was operated. No paid AI request was made.
+Current full check: `npm run check`; 480 original tests plus 33 adaptation tests. The Markdown security tests use jsdom as recommended by DOMPurify; happy-dom remains only for the unchanged original suite. No browser or native UI was operated. No paid AI request was made.
 
 ## Full migration checklist
 

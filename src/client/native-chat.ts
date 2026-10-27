@@ -46,10 +46,17 @@ function convert(node: NativeNode): { message?: AgentMessage; unsupported: strin
     return { message: { id: node.key, role: "user", metadata, parts }, unsupported };
   }
   if (node.kind === "assistant-step") {
-    for (const raw of array(data.blocks)) {
+    for (const [index, raw] of array(data.blocks).entries()) {
       const block = record(raw);
-      if (block.kind === "text" || block.kind === "reasoning") {
-        parts.push({ type: block.kind, text: string(block.text), state: data.status === "running" ? "streaming" : "done" });
+      if (block.kind === "text") {
+        parts.push({ type: "text", text: string(block.text), state: data.status === "running" ? "streaming" : "done" });
+      } else if (block.kind === "reasoning") {
+        // Original ReplyTimeline renders activities, not raw AI SDK reasoning parts.
+        const id = `${node.key}:reasoning:${index}`;
+        parts.push({ type: "data-activity", id, data: { id, label: "思考过程", kind: "tool",
+          status: data.status === "running" ? "running" : data.status === "interrupted" ? "cancelled" : "completed",
+          detail: string(block.text),
+        } });
       } else if (block.kind !== "tool-call") {
         // Tools have their own keyed node and must not be duplicated here.
         unsupported.push(`assistant/${string(block.kind) || "unknown"}`);
@@ -66,7 +73,9 @@ function convert(node: NativeNode): { message?: AgentMessage; unsupported: strin
     const id = string(root.callId) || node.key;
     const detail = settled ? array(root.content).flatMap(raw => {
       const block = record(raw);
-      return block.type === "text" ? [string(block.text)] : [];
+      if (block.type === "text") return [string(block.text)];
+      unsupported.push(`tool/${string(block.type) || "unknown"}`);
+      return [];
     }).join("\n") : string(root.argsRaw);
     parts.push({ type: "data-activity", id, data: {
       id, label: string(root.name) || "工具调用", kind: "tool",

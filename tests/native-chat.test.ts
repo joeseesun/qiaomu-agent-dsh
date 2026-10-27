@@ -14,7 +14,7 @@ describe("authoritative standard chat projection", () => {
   it("restores user, reasoning and assistant text in published order", () => {
     const result = new NativeChatProjection().update(snapshot(node("u", "user", { time: 10, content: [{ type: "text", text: "问" }] }), node("a", "assistant-step", { time: 12, status: "settled", blocks: [{ kind: "reasoning", text: "思考" }, { kind: "text", text: "答" }], finalNode: { time: 15 } })));
     expect(result.messages.map(m => m.role)).toEqual(["user", "assistant"]);
-    expect(result.messages[1]?.parts).toEqual([{ type: "reasoning", text: "思考", state: "done" }, { type: "text", text: "答", state: "done" }]);
+    expect(result.messages[1]?.parts).toEqual([{ type: "data-activity", id: "a:reasoning:0", data: { id: "a:reasoning:0", label: "思考过程", kind: "tool", status: "completed", detail: "思考" } }, { type: "text", text: "答", state: "done" }]);
     expect(result.messages[1]?.metadata?.finishedAt).toBe(15);
   });
   it("updates the same key and replaces retracted retry text, without appending stale tokens", () => {
@@ -97,6 +97,13 @@ describe("retained session lifetime", () => {
     const f = fixture();
     f.services.uiSession.bindingSource.mockImplementation(() => { throw Error("generation ended"); });
     expect(() => observeNativeChat(f.services, "owned", vi.fn())).toThrow("generation ended");
+    expect(f.release).toHaveBeenCalledTimes(1);
+  });
+  it("cleans the first subscription if a second provider fails during startup", () => {
+    const f = fixture();
+    f.session.subscribe = () => { throw Error("provider failed"); };
+    expect(() => observeNativeChat(f.services, "owned", vi.fn())).toThrow("provider failed");
+    expect(f.chat.listeners.size + f.bindingListeners.size).toBe(0);
     expect(f.release).toHaveBeenCalledTimes(1);
   });
   it("ignores asynchronous open failure after disposal", async () => {

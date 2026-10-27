@@ -1,5 +1,6 @@
 // @vitest-environment jsdom
 import { describe, expect, it } from "vitest";
+import DOMPurify from "dompurify";
 import { Component, MarkdownRenderer, sanitizeHTMLToDom, TFile } from "../src/client/obsidian";
 
 describe("original Markdown host boundary", () => {
@@ -41,5 +42,15 @@ describe("original Markdown host boundary", () => {
     const fragment = sanitizeHTMLToDom('<svg viewBox="0 0 20 20"><script>danger()</script><path d="M0 0L20 20" onclick="danger()"/></svg>');
     expect(fragment.querySelector("path")).not.toBeNull();
     expect(fragment.querySelector("script,[onclick]")).toBeNull();
+  });
+  it("refuses raw HTML when the sanitizer cannot run in the current environment", async () => {
+    const original = DOMPurify.isSupported;
+    Object.defineProperty(DOMPurify, "isSupported", { value: false, configurable: true, writable: true });
+    try {
+      expect(() => sanitizeHTMLToDom("<img onerror=danger()>" )).toThrow("safe HTML");
+      const target = document.createElement("div");
+      await expect(MarkdownRenderer.render({}, "<img onerror=danger()>", target, "", new Component())).rejects.toThrow("safe Markdown");
+      expect(target.childNodes.length).toBe(0);
+    } finally { Object.defineProperty(DOMPurify, "isSupported", { value: original, configurable: true, writable: true }); }
   });
 });
