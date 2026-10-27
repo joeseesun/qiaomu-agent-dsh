@@ -1,0 +1,125 @@
+/* Settings typography and geometry. Scoped so the host theme and chat remain independent.
+ * Design references (2026-09-28): Vercel Geist typography/colors; WCAG 1.4.3.
+ * Original CSS, no upstream component source copied.
+ */
+:is(.qiaomu-agent-settings, .qa-provider-modal, .qa-provider-chooser-modal, .qa-model-manager-modal, .qa-capabilities-modal) {
+  --qa-ink: #202020;
+  --qa-muted: #666666;
+  --qa-line: #e5e5e5;
+  --qa-surface: #ffffff;
+  --qa-soft: #f7f7f7;
+  --qa-focus: #737373;
+  font-family: var(--font-interface), -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--qa-ink);
+  background-color: var(--qa-surface);
+  text-autospace: normal;
+}
+.theme-dark :is(.qiaomu-agent-settings, .qa-provider-modal, .qa-provider-chooser-modal, .qa-model-manager-modal, .qa-capabilities-modal) {
+  --qa-ink: #ededed;
+  --qa-muted: #a8a8a8;
+  --qa-line: #353535;
+  --qa-surface: #202020;
+  --qa-soft: #292929;
+  --qa-focus: #a8a8a8;
+}
+.qiaomu-agent-settings__header { padding-top: 8px; }
+.qiaomu-agent-settings__identity { gap: 10px; min-height: 28px; margin-bottom: 22px; }
+.qiaomu-agent-settings__identity > span { display: flex; align-items: center; justify-content: center; flex: 0 0 24px; width: 24px; height: 28px; color: var(--qa-ink); }
+.qiaomu-agent-settings__identity svg { display: block; width: 22px; height: 22px; stroke-width: 1.75; }
+/* Native .setting-item-heading has margin-bottom:16px. Center the text box itself. */
+.qiaomu-agent-settings .qiaomu-agent-settings__identity .setting-item { flex: 1; min-width: 0; margin: 0; padding: 0; border: 0; }
+.qiaomu-agent-settings__identity .setting-item-info { margin: 0; padding: 0; }
+.qiaomu-agent-settings__identity .setting-item-name { margin: 0; font-size: 20px; line-height: 28px; font-weight: 600; letter-spacing: 0; }
+.qiaomu-agent-settings__header .qiaomu-agent-settings__tabs { gap: 24px; }
+.qiaomu-agent-settings__header button.qiaomu-agent-settings__tab { min-height: 40px; padding: 0 0 10px; font-size: 14px; line-height: 20px; }
+.qiaomu-agent-settings__header button.qiaomu-agent-settings__tab:focus-visible { outline: 1px solid var(--qa-focus); outline-offset: 3px; }
+.qiaomu-agent-settings__body.qa-models { gap: 28px; margin-top: 24px; }
+:is(.qiaomu-agent-settings, .qa-provider-modal, .qa-provider-chooser-modal, .qa-capabilities-modal) .qa-ms-head { align-items: center; gap: 16px; }
+:is(.qiaomu-agent-settings, .qa-provider-modal, .qa-provider-chooser-modal, .qa-capabilities-modal) .qa-ms-head h3 { font-size: 15px; line-height: 22px; font-weight: 600; letter-spacing: 0; }
+:is(.qiaomu-agent-settings, .qa-provider-modal, .qa-provider-chooser-modal, .qa-capabilities-modal) .qa-ms-head p { margin-top: 5px; font-size: 13px; line-height: 1.6; }
+:is(.qiaomu-agent-settings, .qa-provider-modal, .qa-provider-chooser-modal, .qa-capabilities-modal) button.qa-ms-button { justify-content: center; min-height: 32px; height: auto; padding: 5px 10px; font-size: 13px; line-height: 20px; }
+:is(.qiaomu-agent-settings, .qa-provider-modal, .qa-provider-chooser-modal, .qa-capabilities-modal) .qa-ms-button-icon { align-items: center; justify-content: center; flex: none; }
+:is(.qiaomu-agent-settings, .qa-provider-modal, .qa-provider-chooser-modal, .qa-capabilities-modal) .qa-ms-button-icon svg { display: block; width: 15px; height: 15px; }
+:is(.qiaomu-agent-settings, .qa-provider-modal) .qa-ms-button.is-primary .qa-ms-button-icon { color: inherit; }
+.qiaomu-agent-settings .qa-ms-row-main:is(button, .is-static) { gap: 12px; min-height: 68px; padding: 12px 8px 12px 16px; }
+.qiaomu-agent-settings .qa-ms-row-main > .qa-brand { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 24px; width: 24px; height: 24px; }
+.qiaomu-agent-settings .qa-ms-row-main > .qa-brand svg { width: 20px; height: 20px; }
+.qiaomu-agent-settings .qa-ms-row-icon { width: 28px; height: 28px; border: 0; background: transparent; }
+:is(.qiaomu-agent-settings, .qa-provider-modal, .qa-provider-chooser-modal, .qa-capabilities-modal) .qa-ms-row-name { font-size: 14px; line-height: 21px; font-weight: 500; overflow-wrap: anywhere; }
+:is(.qiaomu-agent-settings, .qa-provider-modal, .qa-provider-chooser-modal, .qa-capabilities-modal) .qa-ms-row-sub { margin-top: 3px; font-size: 13px; line-height: 19px; }
+.qiaomu-agent-settings .qa-ms-row.is-off .qa-ms-row-name { opacity: 1; color: var(--qa-muted); }
+.qiaomu-agent-settings .qa-ms-chevron { color: var(--qa-muted); }
+.qiaomu-agent-settings .qa-ms-chevron svg { display: block; width: 14px; height: 14px; }
+.qiaomu-agent-settings .qa-ms-settings .setting-item { padding: 14px 16px; }
+.qiaomu-agent-settings .qa-ms-settings .setting-item-name { font-size: 14px; line-height: 21px; }
+.qiaomu-agent-settings .qa-ms-settings .setting-item-description,
+:is(.qiaomu-agent-settings, .qa-provider-modal, .qa-capabilities-modal) :is(.qa-ms-wide-hint, .qa-ms-note, .qa-ms-empty-text, .qa-cap-row-desc) { font-size: 13px; line-height: 1.6; }
+:is(.qiaomu-agent-settings, .qa-provider-modal, .qa-capabilities-modal) :is(.qa-ms-wide-label, .qa-ms-field-label) { font-size: 14px; line-height: 21px; }
+/* Stable single border; keyboard focus uses a thin inset cue, never a glow. */
+:is(.qiaomu-agent-settings, .qa-provider-modal, .qa-provider-chooser-modal, .qa-capabilities-modal) input.qa-ms-input:focus { border-color: var(--qa-line); box-shadow: none !important; }
+:is(.qiaomu-agent-settings, .qa-provider-modal, .qa-provider-chooser-modal, .qa-capabilities-modal) :is(input:not([type="checkbox"]), textarea, select):focus-visible { border-color: var(--qa-focus); outline: none !important; box-shadow: none !important; }
+.qiaomu-agent-settings { container-type: inline-size; }
+@container (max-width: 480px) {
+  .qiaomu-agent-settings__header .qiaomu-agent-settings__tabs { gap: 22px; }
+  .qiaomu-agent-settings__body .qa-ms-head { flex-wrap: wrap; gap: 10px; }
+  .qiaomu-agent-settings__body .qa-ms-head-actions { margin-left: auto; }
+  .qiaomu-agent-settings__body .qa-ms-row-main:is(button, .is-static) { padding-left: 12px; gap: 10px; }
+  .qiaomu-agent-settings__body .qa-ms-row-switch { padding-right: 12px; }
+  .qiaomu-agent-settings__body .qa-ms-settings > .setting-item { flex-wrap: wrap; gap: 10px; }
+  .qiaomu-agent-settings__body .qa-ms-settings .setting-item-control { margin-left: auto; max-width: 100%; }
+  .qiaomu-agent-settings__body .qa-ms-settings .setting-item-control select { max-width: 100%; }
+  .qiaomu-agent-settings__body .qa-ms-row-sub { white-space: normal; overflow-wrap: anywhere; }
+}
+@media (pointer: coarse) {
+  .qiaomu-agent-settings__header button.qiaomu-agent-settings__tab,
+  :is(.qiaomu-agent-settings, .qa-provider-modal, .qa-provider-chooser-modal, .qa-capabilities-modal) button.qa-ms-button { min-height: 44px; }
+}
+/* An enabled switch needs contrast between the track and thumb in both themes. */
+:is(.qiaomu-agent-settings, .qa-provider-modal, .qa-provider-chooser-modal, .qa-capabilities-modal) .checkbox-container.is-enabled { background-color: var(--qa-ink); --toggle-thumb-color: var(--qa-surface); }
+:is(.qiaomu-agent-settings, .qa-provider-modal, .qa-provider-chooser-modal, .qa-capabilities-modal) .checkbox-container:focus-visible { outline: 1px solid var(--qa-focus); outline-offset: 3px; }
+
+/* One quiet input boundary; the eye is an independent keyboard/touch target. */
+:is(.qa-provider-modal, .qa-provider-chooser-modal) .qa-secret-input { position: relative; width: 100%; min-width: 0; }
+:is(.qa-provider-modal, .qa-provider-chooser-modal) .qa-secret-input input.qa-ms-input { padding-right: 44px; }
+:is(.qa-provider-modal, .qa-provider-chooser-modal) button.qa-secret-toggle { position: absolute; right: 3px; top: 50%; transform: translateY(-50%); display: grid; place-items: center; width: 32px; height: 30px; padding: 0; border: 0; border-radius: 5px; background: transparent; box-shadow: none; color: var(--qa-muted); }
+:is(.qa-provider-modal, .qa-provider-chooser-modal) button.qa-secret-toggle:hover { color: var(--qa-ink); background: var(--qa-soft); }
+:is(.qa-provider-modal, .qa-provider-chooser-modal) button.qa-secret-toggle:focus-visible { outline: 1px solid var(--qa-focus); outline-offset: -2px; }
+:is(.qa-provider-modal, .qa-provider-chooser-modal) button.qa-secret-toggle svg { width: 16px; height: 16px; }
+:is(.qa-provider-chooser-modal, .qa-provider-modal) .qa-manual-model { display: flex; align-items: center; gap: 8px; color: var(--qa-muted); font-size: 13px; cursor: pointer; }
+:is(.qa-provider-chooser-modal, .qa-provider-modal) .qa-manual-model input { accent-color: var(--qa-ink); }
+.qa-provider-chooser-modal .qa-ms-form { gap: 16px; }
+.qa-provider-chooser-modal .qa-ms-field { gap: 6px; }
+.qa-provider-chooser-modal .qa-ms-footer { flex-wrap: wrap; }
+.qa-provider-chooser-modal .qa-segments { flex-wrap: wrap; }
+@media (pointer: coarse) {
+  :is(.qa-provider-modal, .qa-provider-chooser-modal) .qa-secret-input input.qa-ms-input { min-height: 44px; padding-right: 48px; }
+  :is(.qa-provider-modal, .qa-provider-chooser-modal) button.qa-secret-toggle { width: 44px; height: 40px; right: 1px; }
+}
+/* Native label margins otherwise add 12px to every field and misalign the eye. */
+:is(.qa-provider-modal, .qa-provider-chooser-modal) .qa-ms-form label.qa-input-label { display: block; margin: 0; }
+:is(.qa-provider-modal, .qa-provider-chooser-modal) .qa-manual-model input[type="checkbox"] { margin: 0; flex: none; }
+:is(.qa-provider-modal, .qa-provider-chooser-modal) .qa-manual-model input[type="checkbox"]:checked { background-color: var(--qa-ink); border-color: var(--qa-ink); }
+:is(.qa-provider-modal, .qa-provider-chooser-modal) .qa-manual-model input[type="checkbox"]:focus-visible { outline: 1px solid var(--qa-focus); outline-offset: 3px; }
+
+/* Discovery and manual entry remain adjacent at every catalog size. */
+.qa-provider-modal .qa-ms-head-actions { flex-wrap: wrap; }
+.qa-provider-modal .qa-ms-add-model { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto auto; gap: 8px; }
+.qa-provider-modal .qa-ms-add-model label.qa-input-label { margin: 0; min-width: 0; }
+@media (max-width: 600px) { .qa-provider-modal .qa-ms-add-model { grid-template-columns: minmax(0, 1fr) auto auto; } .qa-provider-modal .qa-ms-add-model label:first-child { grid-column: 1 / -1; } }
+
+/* Clipboard is a first-class action and never requires focusing the secure field. */
+:is(.qa-provider-modal, .qa-provider-chooser-modal) .qa-secret-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+:is(.qa-provider-modal, .qa-provider-chooser-modal) .qa-secret-status { color: var(--qa-muted); font-size: 12px; overflow-wrap: anywhere; }
+:is(.qa-provider-modal, .qa-provider-chooser-modal) input:focus::placeholder { opacity: 0; }
+:is(.qa-provider-modal, .qa-provider-chooser-modal).qa-mobile-provider { max-height: calc(var(--qa-visible-height, 100dvh) - 24px); }
+:is(.qa-provider-modal, .qa-provider-chooser-modal).qa-mobile-provider .modal-content { min-height: 0; overflow-y: auto; scroll-padding-block: 16px; }
+.qa-provider-chooser-modal.qa-mobile-provider .qa-ms-form { flex-shrink: 0; overflow: visible; }
+.qa-mobile-provider .qa-secret-input input.qa-ms-input { min-height: 44px; font-size: 16px; }
+.qa-mobile-provider button.qa-secret-paste { min-height: 44px; }
+.qa-mobile-provider button.qa-secret-toggle { width: 44px; height: 40px; right: 1px; }
+.qa-mobile-provider .qa-secret-input input.qa-ms-input { padding-right: 48px; }
+.qa-mobile-provider .qa-ms-footer { flex-direction: column; align-items: stretch; }
+.qa-mobile-provider .qa-ms-footer-note { min-width: 0; }
+.qa-mobile-provider .qa-ms-footer > button { align-self: flex-end; max-width: 100%; white-space: normal; }

@@ -1,0 +1,19 @@
+{
+  "repository": "https://github.com/joeseesun/qiaomu-home-dsh",
+  "commit": "fa980f4644dbddee4b88ab31259b847884e1d78a",
+  "files": {
+    "src/client/harness-ui.ts": "8c27309d513fb1894c231fc4d2ccd1e70b855b1fd9f9c7e953bf20358165d836",
+    "src/client/original-ui.ts": "ea6ba9e7a3e3cda20a159eb9e3803195d6ff4be5d5a90d631e72470d2854a609",
+    "src/client/original-globals.ts": "9693ae143892eb91b6b6e3e0faf54640ace99d76d0ab85058aaf44d68218896b",
+    "src/client/harness-ui.css": "58e40cd83f664877df68b03a8cb39209b94a2426e7c36ece04fcba09096270d3",
+    "src/client/home-vault.ts": "75b7187e167d2f6f4bf9c8ce1343076016ab8976194c5a3718bee8e361f2958b",
+    "src/metadata.js": "793281647bd75396aa77e5da9afbfab88570994351080e1b85a81423dfce6085",
+    "src/host/workspace.js": "ca329146b57d3ea19ff73ca477708414cf2d0eb12ac29242d8be463fc0d39eed",
+    "src/host/storage.js": "b1b8366a32c468e7f3ab2790ada4a8502f14990f5dc7ae6d4fdb654935be793e"
+  },
+  "patches": {
+    "src/client/harness-ui.ts": "vendor/qiaomu-home-dsh/patches/harness-ui.ts.patch",
+    "src/client/original-ui.ts": "vendor/qiaomu-home-dsh/patches/original-ui.ts.patch",
+    "src/client/home-vault.ts": "vendor/qiaomu-home-dsh/patches/home-vault.ts.patch"
+  }
+}

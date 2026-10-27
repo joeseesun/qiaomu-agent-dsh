@@ -1,0 +1,399 @@
+/* AI Elements' flat transcript and compound composer, scoped to the Obsidian leaf. */
+.qiaomu-agent--react { --qa-muted: var(--text-muted); --qa-chat-font: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", sans-serif; background: var(--background-primary); display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr) auto; height: 100%; padding: 0; font-family: var(--qa-chat-font); }
+.qiaomu-agent--react > * { min-width: 0; }
+.qiaomu-agent--react button { box-shadow: none; }
+.qiaomu-agent--react .qa-header { display: flex; align-items: center; gap: 6px; padding: 10px 14px; min-height: 48px; }
+.qiaomu-agent--react .qa-header button { flex: 0 0 30px; }
+.qiaomu-agent--react .qa-title-wrap { flex: 1; min-width: 0; }
+.qiaomu-agent--react .qa-title { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; white-space: nowrap; }
+.qiaomu-agent--react .qa-brand-icon { flex: none; color: var(--text-normal); }
+.qiaomu-agent--react .qa-brand { flex: none; font-weight: 600; }
+.qiaomu-agent--react .qa-conversation-title { min-width: 0; margin-left: 4px; overflow: hidden; text-overflow: ellipsis; color: var(--text-muted); font-size: 13px; }
+.qiaomu-agent--react .qa-header button.qa-branch-parent { display: inline-flex; flex: 0 1 auto; align-items: center; gap: 4px; width: 100%; max-width: 100%; min-height: 22px; padding: 2px 0; color: var(--text-muted); font-size: 11px; text-align: left; }
+.qiaomu-agent--react .qa-branch-parent span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.qiaomu-agent--react .qa-branch-parent:hover { color: var(--text-normal); }
+.qiaomu-agent--react .qa-header button, .qiaomu-agent--react .qa-message-actions button { display: grid; place-items: center; padding: 5px; border: 0; background: transparent; color: var(--text-muted); }
+.qiaomu-agent--react .qa-conversation { position: relative; min-height: 0; overflow: hidden; }
+.qiaomu-agent--react .qa-conversation > div { height: 100%; overscroll-behavior: contain; scrollbar-width: thin; }
+.qiaomu-agent--react .qa-conversation-content { display: flex; flex-direction: column; gap: 28px; padding: 20px 20px 32px; min-height: 100%; }
+.qiaomu-agent--react .qa-empty { margin-block: auto; padding: 24px 0 8px; }
+.qiaomu-agent--react .qa-empty h3 { font-size: 18px; margin: 0 0 6px; font-weight: 600; }
+.qiaomu-agent--react .qa-empty p { margin: 0; font-size: 13px; line-height: 1.7; color: var(--text-muted); }
+.qiaomu-agent--react .qa-suggestions { display: flex; flex-direction: column; margin-top: 18px; border: 1px solid var(--background-modifier-border); border-radius: 12px; overflow: hidden; }
+.qiaomu-agent--react .qa-suggestions button { display: block; width: 100%; height: auto; min-height: 40px; padding: 9px 12px; border: 0; border-radius: 0; background: transparent; color: var(--text-normal); font-size: 13px; font-weight: 400; line-height: 1.5; text-align: left; white-space: normal; }
+.qiaomu-agent--react .qa-suggestions button + button { border-top: 1px solid var(--background-modifier-border); }
+.qiaomu-agent--react .qa-suggestions button:hover { background: var(--background-modifier-hover); }
+.qiaomu-agent--react .qa-suggestions button:focus-visible { outline: 2px solid var(--text-normal); outline-offset: -2px; }
+.qiaomu-agent--react .qa-empty .qa-empty-keys { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 14px; color: var(--text-faint); font-size: 12px; }
+.qiaomu-agent--react .qa-empty-keys span { display: inline-flex; align-items: center; gap: 3px; }
+.qiaomu-agent--react .qa-empty-keys kbd { min-width: 18px; padding: 0 4px; border: 1px solid var(--background-modifier-border); border-radius: 4px; background: transparent; color: var(--text-muted); font-family: inherit; font-size: 11px; line-height: 16px; text-align: center; }
+.qiaomu-agent--react .qa-empty-keys span kbd:last-of-type { margin-right: 3px; }
+.qiaomu-agent--react .qa-empty-connect { display: inline-flex; align-items: center; gap: 6px; height: auto; min-height: 34px; margin-top: 16px; padding: 6px 14px; border: 0; border-radius: 8px; background: var(--text-normal); color: var(--background-primary); font-size: 13px; font-weight: 500; }
+.qiaomu-agent--react .qa-empty-connect:hover { background: var(--text-normal); opacity: .88; }
+.qiaomu-agent--react .qa-empty-connect:focus-visible { outline: 2px solid var(--text-normal); outline-offset: 2px; }
+.qiaomu-agent--react .qa-message { display: flex; flex-direction: column; gap: 6px; min-width: 0; font-family: var(--qa-chat-font); font-size: var(--qa-chat-font-size, 15px); line-height: 1.75; letter-spacing: .01em; }
+.qiaomu-agent--react .qa-message.is-user { align-self: flex-end; max-width: 90%; }
+.qiaomu-agent--react .qa-message.is-user.is-editing { width: 100%; max-width: 100%; }
+.qiaomu-agent--react .is-user .qa-message-content { padding: 12px 16px; background: var(--background-secondary); border-radius: 18px; }
+.qiaomu-agent--react .qa-message-content { min-width: 0; overflow-wrap: anywhere; }
+.qiaomu-agent--react .qa-markdown-host { font-family: inherit; font-size: inherit; line-height: inherit; }
+.qiaomu-agent--react .qa-markdown-host :is(p, li, blockquote) { font-family: inherit; font-size: inherit; line-height: inherit; }
+.qiaomu-agent--react .qa-markdown-host :is(pre, code) { font-family: var(--qa-code-font, ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace); font-size: var(--qa-code-font-size, 13px); letter-spacing: 0; }
+.qiaomu-agent--react .qa-message-actions { display: flex; gap: 4px; }
+.qiaomu-agent--react .qa-message-actions button { width: 28px; height: 28px; }
+.qiaomu-agent--react .is-assistant:not(.is-latest) .qa-message-actions, .qiaomu-agent--react .qa-user-message-meta { opacity: 0; pointer-events: none; }
+.qiaomu-agent--react .is-assistant:hover .qa-message-actions,
+.qiaomu-agent--react .qa-message:hover .qa-user-message-meta,
+.qiaomu-agent--react .qa-message:focus-within .qa-user-message-meta,
+.qiaomu-agent--react .is-assistant:focus-within .qa-message-actions { opacity: 1; pointer-events: auto; }
+.qiaomu-agent--react .qa-user-message-meta { display: flex; align-items: center; justify-content: flex-end; gap: 8px; color: var(--text-muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+.qiaomu-agent--react .qa-user-message-meta .qa-message-actions { gap: 2px; }
+.qiaomu-agent--react .qa-message-editor { width: 100%; min-width: 0; }
+.qiaomu-agent--react .qa-message-editor textarea { display: block; width: 100%; min-height: 88px; padding: 0; resize: vertical; border: 0; background: transparent; box-shadow: none; color: var(--text-normal); font: inherit; line-height: inherit; }
+.qiaomu-agent--react .qa-message-editor textarea:focus { border: 0; box-shadow: none; outline: none; }
+.qiaomu-agent--react .qa-message-editor-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 12px; }
+.qiaomu-agent--react .qa-message-editor-actions button { min-height: 32px; padding: 4px 12px; border-radius: 9px; }
+.qiaomu-agent--react .qa-thinking, .qiaomu-agent--react .qa-status { color: var(--text-muted); font-size: 13px; line-height: 1.6; }
+/* A reply's work, Codex-style: quiet one-line steps in order, folded into "已处理 …" once done. */
+.qiaomu-agent--react summary::-webkit-details-marker { display: none; }
+.qiaomu-agent--react .qa-chevron { margin-left: auto; flex: 0 0 auto; }
+.qiaomu-agent--react details[open] > summary > .qa-chevron { transform: rotate(90deg); }
+.qiaomu-agent--react .qa-reply-segment + .qa-reply-segment { margin-top: 10px; }
+.qiaomu-agent--react .qa-steps { display: flex; flex-direction: column; color: var(--text-muted); font-size: 13px; line-height: 1.5; }
+.qiaomu-agent--react .qa-step > summary, .qiaomu-agent--react div.qa-step { list-style: none; display: flex; align-items: center; gap: 6px; min-height: 28px; padding: 3px 0; }
+.qiaomu-agent--react .qa-step > summary { cursor: pointer; border-radius: 6px; }
+.qiaomu-agent--react .qa-step > summary:hover { color: var(--text-normal); }
+.qiaomu-agent--react .qa-step > summary:focus-visible, .qiaomu-agent--react .qa-worked > summary:focus-visible { outline: 2px solid var(--text-normal); outline-offset: 1px; }
+.qiaomu-agent--react .qa-step .qa-chevron { opacity: 0; }
+@media (pointer: coarse) { .qiaomu-agent--react .qa-step .qa-chevron { opacity: .6; } }
+.qiaomu-agent--react .qa-step > summary:hover .qa-chevron, .qiaomu-agent--react .qa-step > summary:focus-visible .qa-chevron, .qiaomu-agent--react .qa-step[open] > summary .qa-chevron { opacity: 1; }
+.qiaomu-agent--react .qa-step-verb { flex: none; }
+.qiaomu-agent--react .qa-step-target { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--text-normal); }
+.qiaomu-agent--react code.qa-step-target { padding: 0; background: none; font-size: 12px; }
+.qiaomu-agent--react .qa-step.is-failed .qa-step-target { color: var(--text-muted); }
+.qiaomu-agent--react .qa-step-failed { flex: none; display: inline-flex; color: var(--text-error); }
+.qiaomu-agent--react .qa-step-note { flex: none; color: var(--text-faint); font-size: 12px; }
+.qiaomu-agent--react .qa-diffstat { flex: none; display: inline-flex; gap: 4px; font-family: var(--font-monospace); font-size: 12px; }
+.qiaomu-agent--react .qa-diffstat .is-added { color: var(--color-green); }
+.qiaomu-agent--react .qa-diffstat .is-removed { color: var(--color-red); }
+.qiaomu-agent--react .qa-explore-list { margin: 0 0 4px 20px; }
+.qiaomu-agent--react .qa-worked > summary { list-style: none; display: inline-flex; align-items: center; gap: 4px; min-height: 28px; color: var(--text-muted); font-size: 13px; cursor: pointer; border-radius: 6px; }
+.qiaomu-agent--react .qa-worked > summary:hover { color: var(--text-normal); }
+.qiaomu-agent--react .qa-worked-body { margin: 4px 0 6px; padding-bottom: 12px; border-bottom: 1px solid var(--background-modifier-border); }
+.qiaomu-agent--react .qa-worked-body > div:not(.qa-steps) { color: var(--text-muted); }
+.qiaomu-agent--react .qa-plan { padding: 10px 12px; border: 1px solid var(--background-modifier-border); border-radius: 10px; font-size: 13px; }
+.qiaomu-agent--react .qa-plan-head { display: flex; justify-content: space-between; margin-bottom: 6px; font-weight: 600; }
+.qiaomu-agent--react .qa-plan-count { color: var(--text-muted); font-weight: 400; font-variant-numeric: tabular-nums; }
+.qiaomu-agent--react .qa-plan-note { margin: 0 0 6px; color: var(--text-muted); }
+.qiaomu-agent--react .qa-plan ol { margin: 0; padding: 0; list-style: none; }
+.qiaomu-agent--react .qa-plan li { display: flex; align-items: flex-start; gap: 8px; padding: 3px 0; line-height: 1.5; }
+.qiaomu-agent--react .qa-plan li > svg, .qiaomu-agent--react .qa-plan li > .qa-working-dot { flex: none; margin-top: 3px; color: var(--text-faint); }
+.qiaomu-agent--react .qa-plan li > .qa-working-dot { margin: 7px 4px 0; }
+.qiaomu-agent--react .qa-plan li.is-completed { color: var(--text-muted); }
+.qiaomu-agent--react .qa-plan li.is-completed > span:not(.qiaomu-agent__sr-only) { text-decoration-line: line-through; }
+.qiaomu-agent--react .qa-working-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--text-muted); }
+.qiaomu-agent--react .qa-scroll-bottom { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: grid; place-items: center; width: 32px; height: 32px; padding: 0; border-radius: 50%; background: var(--background-primary); border: 1px solid var(--background-modifier-border); }
+.qiaomu-agent--react .qa-composer { padding: 8px 12px 14px; position: relative; }
+.qiaomu-agent--react .qa-prompt-strip { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; }
+.qiaomu-agent--react .qa-prompt-chips { display: flex; flex: 1; align-items: center; gap: 6px; min-width: 0; overflow-x: auto; scrollbar-width: thin; }
+.qiaomu-agent--react .qa-prompt-chips button { display: inline-flex; flex: none; align-items: center; gap: 4px; min-height: 30px; max-width: 170px; padding: 4px 10px; border: 1px solid var(--background-modifier-border); border-radius: 999px; background: transparent; color: var(--text-muted); font-size: 12px; white-space: nowrap; box-shadow: none; }
+.qiaomu-agent--react .qa-prompt-chips button > span { overflow: hidden; text-overflow: ellipsis; }
+.qiaomu-agent--react .qa-prompt-chips button.is-pinned { color: var(--text-normal); }
+.qiaomu-agent--react .qa-prompt-chips button > svg { flex: none; color: var(--text-faint); }
+.qiaomu-agent--react .qa-prompt-chips button:hover { color: var(--text-normal); background: var(--background-modifier-hover); }
+.qiaomu-agent--react .qa-prompt-chips button:focus-visible, .qiaomu-agent--react .qa-prompt-more .qa-control-trigger:focus-visible { outline: 2px solid var(--text-normal); outline-offset: -2px; }
+.qiaomu-agent--react .qa-prompt-chips button:disabled { opacity: .5; }
+.qiaomu-agent--react .qa-prompt-more .qa-control-trigger { display: inline-flex; align-items: center; justify-content: center; width: 30px; min-height: 30px; padding: 0; border: 1px solid var(--background-modifier-border); border-radius: 999px; background: transparent; color: var(--text-muted); box-shadow: none; }
+.qiaomu-agent--react .qa-prompt-more .qa-control-trigger:hover, .qiaomu-agent--react .qa-prompt-more .qa-control-trigger[aria-expanded="true"] { color: var(--text-normal); background: var(--background-modifier-hover); }
+.qiaomu-agent--react .qa-prompt-more .qa-control-popover { bottom: calc(100% - 4px); left: 12px; right: 12px; width: auto; max-height: min(420px, 60dvh); padding: 0; display: flex; flex-direction: column; overflow: hidden; }
+.qiaomu-agent--react .qa-prompt-picker { display: flex; flex-direction: column; min-height: 0; }
+.qiaomu-agent--react .qa-prompt-search { display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-bottom: 1px solid var(--background-modifier-border); color: var(--text-muted); }
+.qiaomu-agent--react .qa-prompt-search input { flex: 1; min-width: 0; height: 28px; padding: 0; border: 0; background: transparent; box-shadow: none; font-size: 13px; }
+.qiaomu-agent--react .qa-prompt-search input:focus { box-shadow: none; }
+.qiaomu-agent--react .qa-prompt-search:focus-within { color: var(--text-normal); }
+.qiaomu-agent--react .qa-prompt-list { flex: 1; min-height: 0; max-height: min(320px, 45dvh); overflow: auto; overscroll-behavior: contain; padding: 4px 6px 6px; }
+.qiaomu-agent--react .qa-prompt-list button { display: flex; align-items: center; gap: 8px; width: 100%; height: auto; min-height: 34px; padding: 6px 8px; border: 0; border-radius: 7px; background: transparent; box-shadow: none; color: var(--text-normal); font-size: 13px; text-align: left; }
+.qiaomu-agent--react .qa-prompt-list button[aria-selected="true"] { background: var(--background-modifier-hover); }
+.qiaomu-agent--react .qa-prompt-list button > svg { flex: none; margin-left: auto; color: var(--text-faint); }
+.qiaomu-agent--react .qa-prompt-title { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.qiaomu-agent--react .qa-prompt-picker-foot { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 6px 8px 6px 12px; border-top: 1px solid var(--background-modifier-border); color: var(--text-faint); font-size: 11px; }
+.qiaomu-agent--react .qa-prompt-picker-foot button { display: inline-flex; align-items: center; gap: 5px; height: 28px; padding: 0 8px; border: 0; border-radius: 7px; background: transparent; box-shadow: none; color: var(--text-muted); font-size: 12px; }
+.qiaomu-agent--react .qa-prompt-picker-foot button:hover { color: var(--text-normal); background: var(--background-modifier-hover); }
+.qiaomu-agent--react .qa-command-hint { padding: 6px 8px 2px; color: var(--text-faint); font-size: 11px; }
+.qiaomu-agent--react .qa-prompt-form { margin-bottom: 8px; padding: 10px 12px 12px; border: 1px solid var(--background-modifier-border); border-radius: 14px; background: var(--background-secondary); }
+.qiaomu-agent--react .qa-prompt-form-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 6px; font-size: 13px; font-weight: 600; }
+.qiaomu-agent--react .qa-prompt-form-head button { display: grid; place-items: center; width: 26px; height: 26px; padding: 0; border: 0; background: transparent; box-shadow: none; color: var(--text-muted); }
+.qiaomu-agent--react .qa-prompt-field { display: flex; flex-direction: column; gap: 3px; margin-top: 6px; }
+.qiaomu-agent--react .qa-prompt-field label { color: var(--text-muted); font-size: 12px; }
+.qiaomu-agent--react .qa-prompt-field textarea { height: var(--qa-prompt-height, auto); max-height: 140px; }
+.qiaomu-agent--react .qa-prompt-field textarea, .qiaomu-agent--react .qa-prompt-field select { width: 100%; min-height: 34px; padding: 6px 10px; border: 1px solid var(--background-modifier-border); border-radius: 9px; background: var(--background-primary); font-size: 13px; line-height: 1.5; resize: none; }
+.qiaomu-agent--react .qa-prompt-field textarea:focus-visible, .qiaomu-agent--react .qa-prompt-field select:focus-visible { border-color: var(--text-muted); box-shadow: none; outline: none; }
+.qiaomu-agent--react .qa-prompt-form-actions { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 10px; color: var(--text-faint); font-size: 11px; }
+.qiaomu-agent--react .qa-prompt-form-actions button.qa-prompt-form-send { flex: none; min-height: 30px; padding: 4px 14px; border: 0; border-radius: 9px; background: var(--text-normal); box-shadow: none; color: var(--background-primary); font-weight: 500; }
+.qiaomu-agent--react .qa-prompt-form-actions button.qa-prompt-form-send:hover { opacity: .88; }
+.qiaomu-agent--react .qa-prompt-form-actions button.qa-prompt-form-send:focus-visible { outline: 2px solid var(--text-normal); outline-offset: 2px; }
+.qiaomu-agent--react .qa-prompt-form-actions > span, .qiaomu-agent--react .qa-prompt-picker-foot > span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.qiaomu-agent--react .qa-prompt-picker-foot button { flex: none; }
+.qiaomu-agent--react .qa-sent-prompt-title { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; }
+.qiaomu-agent--react .qa-sent-prompt-title svg { color: var(--text-muted); }
+.qiaomu-agent--react .qa-sent-prompt-extra { margin: 6px 0 0; white-space: pre-wrap; }
+.qiaomu-agent--react .qa-sent-prompt details { margin-top: 6px; color: var(--text-muted); font-size: 12px; }
+.qiaomu-agent--react .qa-sent-prompt summary { cursor: pointer; }
+.qiaomu-agent--react .qa-sent-prompt-body { max-height: 240px; margin-top: 6px; overflow: auto; white-space: pre-wrap; }
+.qiaomu-agent--react .qa-command-group { padding: 10px 8px 4px; color: var(--text-faint); font-size: 11px; font-weight: 500; }
+.qiaomu-agent--react .qa-command-group:first-child { padding-top: 4px; }
+.qiaomu-agent--react .qa-command-empty { padding: 9px; color: var(--text-muted); font-size: 13px; }
+.qiaomu-agent--react .qa-status { padding: 0 4px 8px; }
+.qiaomu-agent--react .qa-prompt,
+.qiaomu-agent--react .qa-prompt:hover,
+.qiaomu-agent--react .qa-prompt:focus-within { container: qa-prompt / inline-size; padding: 12px; border: 1px solid var(--background-modifier-border); border-radius: 20px; background: var(--background-primary); box-shadow: none; }
+.qiaomu-agent--react .qa-prompt:has(.qa-prompt-textarea:focus-visible) { outline: none; }
+.qiaomu-agent--react .qa-prompt-header { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 8px; }
+.qiaomu-agent--react .qa-note { display: inline-flex; align-items: center; gap: 5px; max-width: 100%; padding: 3px 6px; border-radius: 6px; background: var(--background-secondary); color: var(--text-muted); font-size: 12px; }
+.qiaomu-agent--react .qa-note > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.qiaomu-agent--react .qa-note button { display: grid; place-items: center; padding: 0; width: 20px; height: 20px; border: 0; background: transparent; }
+.qiaomu-agent--react .qa-prompt-textarea { display: block; width: 100%; min-height: 62px; max-height: 180px; padding: 3px; border: 0; resize: none; background: transparent; box-shadow: none; font: inherit; font-size: 14px; line-height: 1.65; }
+.qiaomu-agent--react .qa-prompt-textarea:hover,
+.qiaomu-agent--react .qa-prompt-textarea:focus,
+.qiaomu-agent--react .qa-prompt-textarea:focus-visible { background: transparent; border-color: transparent; box-shadow: none; outline: none; }
+.qiaomu-agent--react .qa-prompt-footer, .qiaomu-agent--react .qa-prompt-tools { display: flex; align-items: center; gap: 4px; min-width: 0; }
+.qiaomu-agent--react .qa-prompt-footer { margin-top: 8px; flex-wrap: nowrap; }
+.qiaomu-agent--react .qa-prompt-tools, .qiaomu-agent--react .qa-context-control { flex: none; }
+.qiaomu-agent--react .qa-prompt-footer button:not(.qa-submit), .qiaomu-agent--react .qa-prompt-footer select { display: flex; align-items: center; gap: 4px; min-height: 30px; height: auto; padding: 4px; border: 0; background: transparent; color: var(--text-muted); font-size: 12px; }
+.qiaomu-agent--react .qa-model { min-width: 0; }
+.qiaomu-agent--react .qa-model span, .qiaomu-agent--react .qa-skill { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.qiaomu-agent--react .qa-skill { max-width: 75px; }
+.qiaomu-agent--react .qa-submit { display: grid; place-items: center; width: 30px; height: 30px; flex: 0 0 30px; border-radius: 50%; padding: 0; background: var(--text-normal); color: var(--background-primary); border: 0; }
+.qiaomu-agent--react .qa-error { padding: 12px; border-radius: 10px; background: var(--background-secondary); color: var(--text-error); font-size: 13px; overflow-wrap: anywhere; }
+.qiaomu-agent--react .qa-error button { margin-right: 6px; }
+.qiaomu-agent--react button:hover { background-color: var(--background-modifier-hover); }
+.qiaomu-agent--react button:disabled { opacity: .45; }
+.qiaomu-agent--react .qa-submit:hover { background: var(--text-muted); }
+@media (pointer: coarse) { .qiaomu-agent--react button, .qiaomu-agent--react select { min-height: 40px; } }
+@media (pointer: coarse) { .qiaomu-agent--react .is-assistant .qa-message-actions, .qiaomu-agent--react .qa-user-message-meta { opacity: 1; pointer-events: auto; } }
+/* Access is icon-only; full access keeps a warning tint so the risk stays visible without a label. */
+.qiaomu-agent--react .qa-prompt-footer .qa-permission-control.is-full .qa-control-trigger { color: var(--text-warning); }
+.qiaomu-agent--react .qa-attachments { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+.qiaomu-agent--react .qa-attachment { display: flex; align-items: center; gap: 6px; padding: 5px 7px; border: 1px solid var(--background-modifier-border); border-radius: 8px; max-width: 100%; font-size: 12px; }
+.qiaomu-agent--react .qa-attachment img { object-fit: cover; border-radius: 5px; flex-shrink: 0; }
+.qiaomu-agent--react .qa-attachment .qa-image-thumb { display: block; width: auto; height: auto; padding: 0; border: 0; background: transparent; cursor: zoom-in; }
+.qiaomu-agent--react .qa-attachment .qa-image-thumb:focus-visible { outline: 2px solid var(--text-normal); outline-offset: 2px; }
+.qiaomu-agent--react .qa-attachment .qa-reference-label { color: var(--text-muted); font-size: 11px; }
+.qiaomu-agent--react .qa-markdown-host img { cursor: zoom-in; }
+.qiaomu-agent--react .qa-attachments--grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr)); gap: 10px; }
+.qiaomu-agent--react .qa-attachments--grid .qa-attachment { display: block; padding: 0; overflow: hidden; border-radius: 12px; background: var(--background-secondary); }
+.qiaomu-agent--react .qa-attachments--grid .qa-attachment img { display: block; width: 100%; height: auto; max-height: 420px; object-fit: contain; border-radius: 0; }
+.qiaomu-agent--react .qa-attachments--grid .qa-image-thumb { width: 100%; }
+.qiaomu-agent--react .qa-attachments--grid .qa-attachment > span { display: block; padding: 7px 9px; color: var(--text-muted); }
+.qiaomu-agent--react .qa-attachment span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+.qiaomu-agent--react .qa-attachment button { background: transparent; padding: 3px; border: 0; }
+.qiaomu-agent--react .qa-command-menu { position: absolute; bottom: calc(100% - 3px); left: 12px; right: 12px; max-height: 260px; overflow: auto; overscroll-behavior: contain; padding: 6px; border: 1px solid var(--background-modifier-border); border-radius: 12px; background: var(--background-primary); box-shadow: var(--shadow-s); z-index: 5; }
+.qiaomu-agent--react .qa-command-menu button { width: 100%; height: auto; min-height: 38px; display: flex; gap: 9px; align-items: center; justify-content: flex-start; text-align: left; border: 0; border-radius: 7px; padding: 8px; background: transparent; font-size: 13px; }
+.qiaomu-agent--react .qa-command-menu button[aria-selected="true"] { background: var(--background-modifier-hover); }
+.qiaomu-agent--react .qa-command-menu button span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.qiaomu-agent--react button:focus-visible { outline: 2px solid var(--interactive-accent); outline-offset: 2px; }
+/* Response blocks follow AI Elements' direct-child rhythm. Never reset every descendant
+   p:first-child/last-child: host postprocessors can wrap each paragraph separately. */
+.qiaomu-agent--react .qa-markdown-response { min-width: 0; }
+.qiaomu-agent--react .qa-markdown-response > * + * { margin-block-start: 1em; }
+.qiaomu-agent--react .qa-markdown-host { max-inline-size: 76ch; text-autospace: normal; hanging-punctuation: allow-end; font-kerning: normal; }
+.qiaomu-agent--react .qa-markdown-host .qiaomu-agent__markdown { display: flow-root; min-width: 0; }
+.qiaomu-agent--react .qa-markdown-host p { margin-block: 1em; }
+.qiaomu-agent--react .qa-markdown-host :is(h1, h2, h3, h4, h5, h6) { margin: 1.6em 0 .55em; color: var(--text-normal); font-family: inherit; font-weight: 600; line-height: 1.4; letter-spacing: 0; }
+.qiaomu-agent--react .qa-markdown-host h1 { font-size: 1.3em; }
+.qiaomu-agent--react .qa-markdown-host h2 { font-size: 1.18em; }
+.qiaomu-agent--react .qa-markdown-host h3 { font-size: 1.06em; }
+.qiaomu-agent--react .qa-markdown-host :is(h4, h5, h6) { font-size: 1em; }
+.qiaomu-agent--react .qa-markdown-host :is(ul, ol) { margin-block: .85em; padding-inline-start: 1.5em; }
+.qiaomu-agent--react .qa-markdown-host li { margin-block: .4em; }
+.qiaomu-agent--react .qa-markdown-host li > p { margin-block: .45em; }
+.qiaomu-agent--react .qa-markdown-host li > p:first-child { margin-block-start: 0; }
+.qiaomu-agent--react .qa-markdown-host li > p:last-child { margin-block-end: 0; }
+.qiaomu-agent--react .qa-markdown-host li :is(ul, ol) { margin-block: .3em; }
+.qiaomu-agent--react .qa-markdown-host li::marker { color: var(--text-muted); }
+.qiaomu-agent--react .qa-markdown-host strong { font-weight: 600; }
+.qiaomu-agent--react .qa-markdown-host em { font-synthesis-style: none; }
+.qiaomu-agent--react .qa-markdown-host a { color: var(--text-normal); text-decoration: underline; text-decoration-color: var(--text-faint); text-decoration-thickness: 1px; text-underline-offset: .25em; cursor: pointer; overflow-wrap: anywhere; }
+.qiaomu-agent--react .qa-markdown-host a:hover { text-decoration-color: var(--text-normal); }
+.qiaomu-agent--react .qa-markdown-host a.is-unresolved { text-decoration-style: dashed; color: var(--text-muted); }
+.qiaomu-agent--react .qa-markdown-host a:focus-visible { outline: 2px solid var(--text-normal); outline-offset: 2px; border-radius: 3px; }
+.qiaomu-agent--react .qa-markdown-host :not(pre) > code { padding: .12em .36em; border-radius: 5px; background: var(--background-secondary); color: var(--text-normal); overflow-wrap: anywhere; }
+.qiaomu-agent--react .qa-markdown-host pre,
+.qiaomu-agent--react .qa-markdown-response > pre { max-width: 100%; margin-block: 1em; padding: .8em 1em; overflow-x: auto; border-radius: 10px; background: var(--background-secondary); font-family: var(--qa-code-font, monospace); font-size: var(--qa-code-font-size, 13px); line-height: 1.6; white-space: pre; overflow-wrap: normal; }
+.qiaomu-agent--react .qa-markdown-host pre code { padding: 0; background: transparent; font-size: inherit; line-height: inherit; white-space: inherit; overflow-wrap: normal; }
+/* No decorative side rule on quotes: preserve the host's callout components. */
+.qiaomu-agent--react .qa-markdown-host blockquote { margin: 1em 0; padding: .65em 1em; border: 0; border-radius: 8px; background: var(--background-secondary); color: var(--text-muted); }
+.qiaomu-agent--react .qa-markdown-host blockquote > :is(p, ul, ol) { margin-block: .4em; }
+.qiaomu-agent--react .qa-markdown-host hr { margin: 1.5em 0; border: 0; border-top: 1px solid var(--background-modifier-border); }
+/* The table, rather than the entire conversation, scrolls on narrow sidebars. */
+.qiaomu-agent--react .qa-markdown-host table { display: block; max-width: 100%; margin-block: 1em; overflow-x: auto; border-collapse: collapse; font-size: .93em; line-height: 1.6; }
+.qiaomu-agent--react .qa-markdown-host :is(th, td) { min-width: 6em; padding: .55em .75em; border: 1px solid var(--background-modifier-border); vertical-align: top; overflow-wrap: normal; }
+.qiaomu-agent--react .qa-markdown-host th { background: var(--background-secondary); font-weight: 600; }
+.qiaomu-agent--react .qa-markdown-host img { max-width: 100%; height: auto; border-radius: 8px; }
+/* Trim only the response edges, including a single host block wrapper. */
+.qiaomu-agent--react .qa-markdown-host .qiaomu-agent__markdown > :first-child,
+.qiaomu-agent--react .qa-markdown-host .qiaomu-agent__markdown > :first-child > :first-child { margin-block-start: 0; }
+.qiaomu-agent--react .qa-markdown-host .qiaomu-agent__markdown > :last-child,
+.qiaomu-agent--react .qa-markdown-host .qiaomu-agent__markdown > :last-child > :last-child { margin-block-end: 0; }
+@media (prefers-reduced-motion: reduce) { .qiaomu-agent--react * { scroll-behavior: auto; animation: none; transition: none; } }
+
+/* Touch controls must not depend on hover or inherit desktop-sized hit targets. */
+.is-mobile .qiaomu-agent--react .qa-header button,
+.is-mobile .qiaomu-agent--react .qa-message-actions button,
+.is-mobile .qiaomu-agent--react .qa-attachment button,
+.is-mobile .qiaomu-agent--react .qa-note button,
+.is-mobile .qiaomu-agent--react .qa-prompt-footer button,
+.is-mobile .qiaomu-agent--react .qa-prompt-footer select { min-width: 44px; min-height: 44px; }
+.is-mobile .qiaomu-agent--react .qa-header button,
+.is-mobile .qiaomu-agent--react .qa-submit { flex-basis: 44px; }
+.is-mobile .qiaomu-agent--react .qa-prompt-textarea { font-size: 16px; }
+.is-mobile .qiaomu-agent--react .qa-prompt-tools { width: auto; }
+.is-mobile .qiaomu-agent--react .qa-composer { padding-bottom: max(12px, env(safe-area-inset-bottom)); }
+.is-mobile .qiaomu-agent--react .qa-command-menu { max-height: min(260px, 35dvh); }
+.qa-image-lightbox { width: min(96vw, 1200px); max-width: none; background: #111; color: #f5f5f5; border: 1px solid #303030; box-shadow: 0 20px 60px #0008; }
+.qa-image-lightbox .modal-title { color: #f5f5f5; font-size: 14px; font-weight: 500; }
+.qa-image-lightbox .modal-close-button { color: #e5e5e5; }
+.qa-image-stage { display: flex; align-items: center; justify-content: center; gap: 12px; min-height: 240px; }
+.qa-image-stage img { display: block; max-width: calc(100% - 96px); max-height: 72vh; object-fit: contain; }
+.qa-image-stage button { flex: 0 0 36px; width: 36px; height: 36px; padding: 0; border: 1px solid #444; border-radius: 50%; background: #222; color: #fff; font-size: 28px; line-height: 1; }
+.qa-image-stage button:focus-visible, .qa-image-footer button:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.qa-image-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 12px; color: #aaa; font-size: 12px; }
+.qa-image-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.qa-image-actions button { background: #262626; color: #f5f5f5; border: 1px solid #444; }
+.qa-image-target { padding: 9px 12px; border: 1px solid var(--background-modifier-border); border-radius: 8px; overflow-wrap: anywhere; }
+.qiaomu-agent--react .qa-control { min-width: 0; }
+.qiaomu-agent--react .qa-model-control { flex: 0 1 auto; margin-left: auto; }
+.qiaomu-agent--react .qa-model-control .qa-control-trigger { min-width: 0; }
+/* Narrow composers drop labels by their own width, never wrap: effort first, then the model name. */
+@container qa-prompt (max-width: 330px) { .qiaomu-agent--react .qa-model-control .qa-effort-label { display: none; } }
+@container qa-prompt (max-width: 250px) { .qiaomu-agent--react .qa-model-control .qa-model-name { display: none; } }
+.qiaomu-agent--react .qa-control-trigger { max-width: 100%; border-radius: 8px; }
+.qiaomu-agent--react .qa-control-trigger svg { flex-shrink: 0; stroke-width: 1.75; }
+.qiaomu-agent--react .qa-model-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.qiaomu-agent--react .qa-control-popover { position: absolute; bottom: 64px; left: 24px; width: min(280px, calc(100% - 48px)); padding: 8px; border: 1px solid var(--background-modifier-border); border-radius: 14px; background: var(--background-primary); box-shadow: var(--shadow-s); z-index: 6; max-height: min(320px, 45dvh); overflow: auto; overscroll-behavior: contain; }
+.qiaomu-agent--react .qa-model-control .qa-control-popover { left: auto; right: 24px; }
+.qiaomu-agent--react .qa-permission-control .qa-control-popover { left: 56px; }
+.qiaomu-agent--react .qa-control-popover button { width: 100%; padding: 8px; min-height: 36px; gap: 10px; text-align: left; justify-content: flex-start; color: var(--text-normal); font-size: 13px; border-radius: 7px; }
+.qiaomu-agent--react .qa-control-popover button > span { flex: 1; }
+.qiaomu-agent--react .qa-popover-section { margin: 6px 8px 2px; padding-top: 8px; border-top: 1px solid var(--background-modifier-border); color: var(--text-muted); font-size: 11px; }
+.qiaomu-agent--react .qa-control-popover .qa-full-access { color: var(--text-warning); }
+.qiaomu-agent--react .qa-mermaid { margin-block: 8px; min-width: 0; max-width: 100%; }
+.qiaomu-agent--react .qa-diagram-canvas {
+  min-width: 0; width: 100%; padding: 8px; overflow: hidden; border-radius: 6px;
+  --pele-bg: var(--background-primary); --pele-fg: var(--text-normal); --pele-muted: var(--text-muted);
+  --pele-line: var(--text-muted); --pele-surface: var(--background-secondary); --pele-surface-alt: var(--background-primary-alt);
+  --pele-border: var(--background-modifier-border-hover); --pele-accent: var(--text-normal); --pele-error: var(--text-error);
+  --pele-font: var(--qa-chat-font); --pele-font-mono: var(--qa-code-font, monospace);
+}
+.qiaomu-agent--react .qa-diagram-canvas > svg { display: block; max-width: 100%; margin-inline: auto; }
+.qiaomu-agent--react .qa-diagram-canvas > svg:focus-visible { outline: 1px solid var(--text-muted); outline-offset: -1px; }
+.qiaomu-agent--react .qa-diagram-fallback img { display: block; height: auto; }
+.qiaomu-agent--react .qa-diagram-footer { display: flex; align-items: flex-start; gap: 8px; margin-top: 4px; }
+.qiaomu-agent--react .qa-diagram-footer details { flex: 1; min-width: 0; }
+.qiaomu-agent--react .qa-diagram-footer summary { min-height: 28px; align-content: center; }
+.qiaomu-agent--react .qa-diagram-actions { display: flex; gap: 2px; flex: none; }
+.qiaomu-agent--react .qa-diagram-actions button { width: 28px; height: 28px; padding: 6px; color: var(--text-muted); background: transparent; border: 0; }
+.qiaomu-agent--react .qa-diagram-actions button:hover { background: var(--background-modifier-hover); color: var(--text-normal); }
+.qiaomu-agent--react .qa-diagram-actions button:focus-visible, .qiaomu-agent--react .qa-mermaid summary:focus-visible { outline: 1px solid var(--text-muted); outline-offset: 1px; }
+.qiaomu-agent--react .qa-diagram-error { color: var(--text-error); font-size: 13px; }
+@media (pointer: coarse) { .qiaomu-agent--react .qa-diagram-actions button { width: 44px; height: 44px; padding: 14px; } }
+.qiaomu-agent--react .qa-mermaid summary { color: var(--text-muted); font-size: 12px; cursor: pointer; }
+.qiaomu-agent--react .qa-mermaid pre { max-height: 300px; overflow: auto; white-space: pre-wrap; }
+.qiaomu-agent--react .qa-model-control .qa-effort-label { color: var(--text-muted); font-size: 11px; line-height: 16px; font-weight: 400; white-space: nowrap; }
+
+/* Context window ring (after AI Elements Context) */
+.qiaomu-agent--react .qa-context-control .qa-control-trigger { padding: 4px; }
+.qiaomu-agent--react .qa-context-ring circle { fill: none; stroke-width: 2; }
+.qiaomu-agent--react .qa-context-track { stroke: var(--background-modifier-border); }
+.qiaomu-agent--react .qa-context-value { stroke: var(--text-muted); stroke-linecap: round; }
+.qiaomu-agent--react .qa-context-control.is-warning .qa-context-value { stroke: var(--text-warning); }
+.qiaomu-agent--react .qa-context-control .qa-control-popover { left: auto; right: 24px; }
+.qiaomu-agent--react .qa-context-detail { padding: 4px 6px; font-size: 13px; line-height: 1.6; }
+.qiaomu-agent--react .qa-context-detail p { margin: 0 0 6px; color: var(--text-muted); }
+.qiaomu-agent--react .qa-context-detail p:first-child { color: var(--text-normal); }
+.qiaomu-agent--react .qa-context-numbers { font-variant-numeric: tabular-nums; }
+.qiaomu-agent--react .qa-context-detail button { justify-content: center; margin-top: 4px; border: 1px solid var(--background-modifier-border); }
+
+/* Add menu: grouped like Codex, trigger keys like Claude's shortcut column */
+.qiaomu-agent--react .qa-control-popover:has(.qa-add-menu) { width: min(300px, calc(100% - 48px)); max-height: min(420px, 55dvh); padding: 6px; }
+.qa-add-group + .qa-add-group { margin-top: 4px; padding-top: 4px; border-top: 1px solid var(--background-modifier-border); }
+.qa-add-heading { padding: 6px 8px 4px; color: var(--text-faint); font-size: 12px; font-weight: 500; }
+.qiaomu-agent--react .qa-add-menu button { min-height: 34px; padding: 6px 8px; }
+.qiaomu-agent--react .qa-add-menu button > svg { flex: none; color: var(--text-muted); }
+.qiaomu-agent--react .qa-add-menu button > span:first-of-type { flex: 0 0 auto; }
+.qiaomu-agent--react .qa-add-menu button > .qa-add-hint { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--text-faint); font-size: 12px; }
+.qa-add-key { margin-left: auto; min-width: 20px; padding: 0 5px; border: 1px solid var(--background-modifier-border); border-radius: 5px; color: var(--text-muted); background: transparent; font-family: var(--font-monospace); font-size: 11px; line-height: 18px; text-align: center; }
+.qiaomu-agent--react .qa-add-menu button:hover { background: var(--background-modifier-hover); }
+.qiaomu-agent--react .qa-add-menu button:focus-visible { outline: 2px solid var(--text-normal); outline-offset: -2px; }
+@container (max-width: 320px) { .qiaomu-agent--react .qa-add-menu .qa-add-hint { display: none; } }
+.qa-web-page-input { width: 100%; }
+.qa-web-page-status { min-height: 1.5em; margin: 8px 0 0; color: var(--text-muted); font-size: var(--font-ui-small); }
+.qa-add-switch { position: relative; flex: none; width: 26px; height: 16px; margin-left: auto; border-radius: 999px; background: var(--background-modifier-border); transition: background-color 120ms; }
+.qa-add-switch::after { content: ""; position: absolute; top: 2px; left: 2px; width: 12px; height: 12px; border-radius: 50%; background: var(--background-primary); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); transition: transform 120ms; }
+.qiaomu-agent--react .qa-add-menu button[aria-pressed="true"] .qa-add-switch { background: var(--text-normal); }
+.qiaomu-agent--react .qa-add-menu button[aria-pressed="true"] .qa-add-switch::after { transform: translateX(10px); }
+@media (prefers-reduced-motion: reduce) { .qa-add-switch, .qa-add-switch::after { transition: none; } }
+
+/* Working states breathe quietly; reduced motion stops them (see above). */
+@keyframes qa-pulse { 0%, 100% { opacity: .3; } 50% { opacity: 1; } }
+.qiaomu-agent--react .qa-working-dot { animation: qa-pulse 1.4s ease-in-out infinite; }
+.qiaomu-agent--react .qa-thinking[role="status"] { display: flex; align-items: center; gap: 8px; }
+.qiaomu-agent--react .qa-working-tail { min-height: 22px; margin-top: 8px; color: var(--text-muted); font-size: 13px; }
+.qiaomu-agent--react .qa-working-tail.is-quiet { min-height: 0; margin: 0; }
+.qiaomu-agent--react .qa-shimmer { animation: qa-pulse 1.6s ease-in-out infinite; }
+.qiaomu-agent--react .qa-thinking[role="status"]::before { content: ""; flex: none; width: 6px; height: 6px; border-radius: 50%; background: var(--text-muted); animation: qa-pulse 1.4s ease-in-out infinite; }
+
+/* Touch: no grey flash, a pressed state instead of hover, room for the thumb. */
+@media (pointer: coarse) {
+  .qiaomu-agent--react button { -webkit-tap-highlight-color: transparent; }
+  .qiaomu-agent--react :is(.qa-suggestions button, .qa-command-menu button, .qa-prompt-chips button, .qa-prompt-list button, .qa-message-actions button, .qa-header button, .qa-add-menu button):active { background: var(--background-modifier-active-hover, var(--background-modifier-hover)); }
+  .qiaomu-agent--react .qa-prompt-chips { scrollbar-width: none; }
+  .qiaomu-agent--react .qa-prompt-chips::-webkit-scrollbar { display: none; }
+}
+.is-mobile .qiaomu-agent--react .qa-empty { padding-top: 8px; }
+.is-mobile .qiaomu-agent--react .qa-suggestions button { min-height: 46px; padding-block: 11px; font-size: 15px; }
+.is-mobile .qiaomu-agent--react .qa-empty p { font-size: 14px; }
+.is-mobile .qiaomu-agent--react .qa-empty .qa-empty-keys { display: none; }
+.is-mobile .qiaomu-agent--react .qa-empty-connect { min-height: 44px; }
+.is-mobile .qiaomu-agent--react .qa-prompt-textarea { max-height: min(180px, 28dvh); }
+.is-mobile .qiaomu-agent--react .qa-command-menu button { min-height: 44px; font-size: 15px; }
+
+.qiaomu-agent--react .qa-model-control .qa-control-trigger { gap: 5px; align-items: center; }
+.qiaomu-agent--react .qa-model-control .qa-model-name { font-size: 12px; line-height: 18px; font-weight: 400; }
+
+/* One live status, with an opt-in event log; no JavaScript animation timers. */
+.qiaomu-agent--react .qa-live-status { display: flex; align-items: center; gap: 8px; min-height: 28px; margin-top: 8px; color: var(--text-muted); font-size: 13px; }
+.qiaomu-agent--react .qa-live-work > summary { display: flex; gap: 8px; max-width: 100%; }
+.qiaomu-agent--react .qa-live-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+.qiaomu-agent--react .qa-working-glyph { flex: none; color: var(--text-muted); }
+.qiaomu-agent--react .qa-working-glyph path { transform-origin: 12px 12px; }
+.qiaomu-agent--react .qa-orbit { animation: qa-orbit 3.6s linear infinite; }
+.qiaomu-agent--react .qa-orbit-inner { animation: qa-orbit 2.4s linear infinite reverse; opacity: .55; }
+@keyframes qa-orbit { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .qiaomu-agent--react .qa-working-glyph path { animation: none; }
+}
+
+/* Transcript text remains selectable inside native custom views. */
+.qiaomu-agent--react .qa-message-content { -webkit-user-select: text; user-select: text; }
+
+/* shadcn Trace / Code Block, adapted to the Obsidian sidebar. */
+.qiaomu-agent--react .qa-trace, .qiaomu-agent--react [data-slot="trace-collapsible-content"] { min-width: 0; }
+.qiaomu-agent--react .qa-trace-line { display: flex; align-items: center; gap: 6px; min-width: 0; max-width: 100%; flex: 1; }
+.qiaomu-agent--react [data-slot="trace-icon"] { display: inline-flex; flex: none; color: var(--text-muted); }
+.qiaomu-agent--react [data-slot="trace-title"] { display: flex; gap: 6px; min-width: 0; }
+.qiaomu-agent--react [data-slot="trace-description"] { flex: none; font-variant-numeric: tabular-nums; }
+.qiaomu-agent--react .qa-code-block { min-width: 0; margin: 4px 0 8px; overflow: hidden; border: 1px solid var(--background-modifier-border); border-radius: 8px; background: var(--background-secondary); }
+.qiaomu-agent--react [data-slot="code-block-header"] { display: flex; align-items: center; gap: 8px; min-width: 0; padding: 4px 8px; border-bottom: 1px solid var(--background-modifier-border); }
+.qiaomu-agent--react [data-slot="code-block-title"] { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; color: var(--text-muted); }
+.qiaomu-agent--react [data-slot="code-block-actions"] { display: flex; gap: 4px; margin-left: auto; flex: none; }
+.qiaomu-agent--react [data-slot="code-block-actions"] button { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; padding: 6px; border: 0; border-radius: 4px; background: transparent; box-shadow: none; color: var(--text-muted); }
+.qiaomu-agent--react [data-slot="code-block-actions"] button:hover, .qiaomu-agent--react [data-slot="code-block-actions"] button[aria-pressed="true"] { color: var(--text-normal); background: var(--background-modifier-hover); }
+.qiaomu-agent--react [data-slot="code-block-actions"] button:active { background: var(--background-modifier-active-hover); }
+.qiaomu-agent--react [data-slot="code-block-content"] { max-height: 240px; min-width: 0; margin: 0; padding: 10px; overflow: auto; white-space: pre; color: var(--text-normal); background: transparent; font: 12px/1.6 var(--font-monospace); text-align: left; border: 0; border-radius: 0; }
+.qiaomu-agent--react [data-slot="code-block-content"] code { padding: 0; color: inherit; background: transparent; font: inherit; white-space: inherit; }
+.qiaomu-agent--react [data-slot="code-block-content"][data-wrap] { white-space: pre-wrap; overflow-wrap: anywhere; }
+.qiaomu-agent--react [data-slot="code-block-content"]:focus-visible { outline: 1px solid var(--text-muted); outline-offset: -2px; }
+.qiaomu-agent--react [data-slot="code-block-actions"] button:focus-visible { outline: 1px solid var(--text-muted); outline-offset: 1px; }
+.qiaomu-agent--react .qa-code-error { margin: 0; padding: 6px 10px; color: var(--text-error); font-size: 12px; }
+@media (pointer: coarse) { .qiaomu-agent--react [data-slot="code-block-actions"] button { width: 40px; height: 40px; } }

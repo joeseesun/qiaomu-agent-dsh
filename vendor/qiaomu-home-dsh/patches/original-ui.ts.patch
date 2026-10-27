@@ -1,0 +1,50 @@
+--- a/src/client/original-ui.ts
++++ b/src/client/original-ui.ts
+@@ -228,7 +228,7 @@
+         this.paint();
+       } else if (event.key === "Enter" && this.results.length) {
+         event.preventDefault();
+-        this.choose(this.results[Math.max(0, this.cursor)], event);
++        this.choose(this.results[Math.max(0, this.cursor)]!, event);
+       }
+     });
+   }
+@@ -285,13 +285,13 @@
+         new Notice(error.message);
+     }
+   }
+-  onOpen() {
++  override onOpen() {
+     void this.refresh();
+     queueMicrotask(() => {
+       if (this.opened) this.inputEl.focus();
+     });
+   }
+-  onClose() {
++  override onClose() {
+     this.generation++;
+   }
+ }
+@@ -302,7 +302,7 @@
+   getItemText(item: T) {
+     return String(item);
+   }
+-  getSuggestions(query: string) {
++  override getSuggestions(query: string) {
+     const match = prepareFuzzySearch(query);
+     return this.getItems()
+       .map((item) => ({ item, hit: match(this.getItemText(item)) }))
+@@ -310,11 +310,11 @@
+       .sort((a, b) => b.hit!.score - a.hit!.score)
+       .map((entry) => entry.item);
+   }
+-  renderSuggestion(item: T, el: any) {
++  override renderSuggestion(item: T, el: any) {
+     el.setText(this.getItemText(item));
+   }
+   onChooseItem(_item: T, _event?: MouseEvent | KeyboardEvent) {}
+-  onChooseSuggestion(item: T, event?: MouseEvent | KeyboardEvent) {
++  override onChooseSuggestion(item: T, event?: MouseEvent | KeyboardEvent) {
+     return this.onChooseItem(item, event);
+   }
+ }

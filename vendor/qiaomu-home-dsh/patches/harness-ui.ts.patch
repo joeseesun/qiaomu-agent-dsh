@@ -1,0 +1,38 @@
+--- a/src/client/harness-ui.ts
++++ b/src/client/harness-ui.ts
+@@ -30,7 +30,7 @@
+   element: T,
+ ): T & Record<string, any> {
+   const el = element as AnyElement;
+-  if (el.createDiv) return el as any;
++  if (typeof (el as any).createDiv === "function") return el as any;
+   Object.assign(el, {
+     createEl: (tag: string, options: any = {}, callback?: any) => {
+       const child = createEl(tag, options);
+@@ -116,7 +116,7 @@
+   if (options.text != null) el.textContent = String(options.text);
+   for (const key of ["type", "placeholder", "href", "title", "value"])
+     if (options[key] != null) el.setAttribute(key, String(options[key]));
+-  for (const [k, v] of Object.entries(options.attr || {})) el.setAttr(k, v);
++  for (const [k, v] of Object.entries(options.attr || {})) el.setAttr(k, v == null ? null : String(v));
+   if (tag === "a") {
+     el.setAttribute("rel", "noopener noreferrer");
+   }
+@@ -645,7 +645,7 @@
+     return String(item);
+   }
+   onChooseItem(_item: any) {}
+-  onOpen() {
++  override onOpen() {
+     const input = this.contentEl.createEl("input", {
+       type: "search",
+       placeholder: this.placeholder,
+@@ -681,7 +681,7 @@
+     channels = (value.match(/[\d.]+/g) || []).slice(0, 3).map(Number);
+   const dark =
+     channels.length === 3 &&
+-    channels[0] * 0.2126 + channels[1] * 0.7152 + channels[2] * 0.0722 < 128;
++    channels[0]! * 0.2126 + channels[1]! * 0.7152 + channels[2]! * 0.0722 < 128;
+   for (const el of document.querySelectorAll(".qaudio-dsh-surface")) {
+     el.classList.toggle("theme-dark", dark);
+     el.classList.toggle("theme-light", !dark);

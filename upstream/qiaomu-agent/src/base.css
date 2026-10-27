@@ -1,0 +1,229 @@
+/* Host and settings styles. Build combines this file with chat-ui.css. */
+.qiaomu-agent {
+  --qiaomu-radius: 10px;
+  --qiaomu-line: var(--background-modifier-border);
+  --qiaomu-soft: var(--background-secondary);
+  container-type: inline-size;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  height: 100%;
+  min-width: 0;
+  padding: 0;
+  color: var(--text-normal);
+  font-family: var(--font-interface), -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+}
+
+.qiaomu-agent__header { display: flex; align-items: center; min-height: 48px; gap: 10px; padding: 8px 16px; }
+.qiaomu-agent__title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 14px; font-weight: 600; }
+.qiaomu-agent__session { display: flex; align-items: center; min-width: 0; gap: 7px; }
+.qiaomu-agent__connection-dot { width: 7px; height: 7px; flex: 0 0 auto; border-radius: 50%; background: var(--color-green); box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-green) 12%, transparent); }
+.qiaomu-agent__backend { display: flex; align-items: center; gap: 4px; max-width: 180px; min-height: 28px; padding: 2px 7px; border: 0; background-color: transparent; box-shadow: none; font-size: 12px; font-weight: var(--font-semibold); text-overflow: ellipsis; }
+.qiaomu-agent__backend:hover { background-color: var(--background-modifier-hover); }
+.qiaomu-agent__backend > span:first-child { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.qiaomu-agent__backend-chevron { display: grid; place-items: center; color: var(--text-faint); }
+.qiaomu-agent__backend-chevron svg { width: 12px; height: 12px; }
+.qiaomu-agent__status { color: var(--text-muted); font-size: 12px; line-height: 1.5; padding: 0 4px 8px; overflow-wrap: anywhere; }
+.qiaomu-agent__status:empty { display: none; }
+.qiaomu-agent__new { display: grid; place-items: center; width: 30px; height: 30px; margin-left: auto; padding: 0; border: 0; background: transparent; box-shadow: none; }
+.qiaomu-agent__new:hover { background: var(--background-modifier-hover); }
+
+.qiaomu-agent__messages { min-height: 0; overflow-y: auto; padding: 20px 18px 28px; overflow-anchor: none; }
+.qiaomu-agent__empty { min-height: 100%; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 32px 8px; }
+.qiaomu-agent__empty-icon { width: 34px; height: 34px; display: grid; place-items: center; margin-bottom: 14px; color: var(--text-muted); background: var(--background-secondary); border: 1px solid var(--qiaomu-line); border-radius: 10px; }
+.qiaomu-agent__empty-icon svg { width: 17px; height: 17px; }
+.qiaomu-agent__empty h3 { margin: 0 0 5px; font-size: 16px; font-weight: 600; }
+.qiaomu-agent__empty p { margin: 0 0 18px; color: var(--text-muted); font-size: 14px; line-height: 1.65; }
+.qiaomu-agent__quick-prompts { display: grid; width: 100%; gap: 4px; }
+.qiaomu-agent__quick-prompts button { height: auto; min-height: 34px; padding: 7px 9px; color: var(--text-muted); background: transparent; border: 0; box-shadow: none; white-space: normal; text-align: left; }
+.qiaomu-agent__quick-prompts button:hover { color: var(--text-normal); background: var(--background-modifier-hover); }
+
+.qiaomu-agent__message { margin: 0 0 28px; }
+.qiaomu-agent__message-meta { margin: 0 0 5px; color: var(--text-faint); font-size: 10px; }
+.qiaomu-agent__message--user { width: fit-content; max-width: 92%; margin-left: auto; }
+.qiaomu-agent__message--user .qiaomu-agent__message-meta { text-align: right; }
+.qiaomu-agent__message--user .qiaomu-agent__message-content { padding: 10px 14px; border-radius: 14px; background: var(--qiaomu-soft); }
+.qiaomu-agent__message-content { min-width: 0; color: var(--text-normal); font-family: var(--font-text), -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif; font-size: max(14px, var(--font-text-size)); line-height: 1.72; overflow-wrap: anywhere; }
+.qiaomu-agent__markdown > :first-child { margin-top: 0; }
+.qiaomu-agent__markdown > :last-child { margin-bottom: 0; }
+.qiaomu-agent__markdown p { margin-block: .65em; }
+.qiaomu-agent__markdown h1, .qiaomu-agent__markdown h2, .qiaomu-agent__markdown h3, .qiaomu-agent__markdown h4 { font-weight: 600; }
+.qiaomu-agent__markdown pre, .qiaomu-agent__markdown .mermaid, .qiaomu-agent__markdown table { max-width: 100%; overflow: auto; }
+.qiaomu-agent__markdown table { display: block; border-collapse: collapse; }
+.qiaomu-agent__markdown img { max-width: 100%; }
+.qiaomu-agent__thinking { color: var(--text-muted); animation: qiaomu-pulse 1.4s ease-in-out infinite; }
+
+.qiaomu-agent__activities { margin: 0 0 14px; color: var(--text-muted); font-family: var(--font-interface); }
+.qiaomu-agent__activity-heading { display: flex; align-items: center; gap: 7px; min-height: 32px; cursor: pointer; list-style: none; font-size: 13px; }
+.qiaomu-agent__activity-heading::-webkit-details-marker { display: none; }
+.qiaomu-agent__activity-heading svg { width: 14px; height: 14px; vertical-align: middle; }
+.qiaomu-agent__activity-chevron { margin-left: auto; }
+.qiaomu-agent__activities[open] > summary .qiaomu-agent__activity-chevron { transform: rotate(90deg); }
+.qiaomu-agent__activity { margin-top: 4px; border-radius: 8px; background: var(--background-secondary); color: var(--text-muted); font-size: 12px; }
+.qiaomu-agent__activity summary { min-height: 30px; display: grid; grid-template-columns: 16px minmax(0, 1fr) auto; align-items: center; gap: 6px; padding: 5px 8px; cursor: pointer; list-style: none; }
+.qiaomu-agent__activity summary::-webkit-details-marker { display: none; }
+.qiaomu-agent__activity-icon { display: grid; place-items: center; }
+.qiaomu-agent__activity-icon svg { width: 13px; height: 13px; }
+.qiaomu-agent__activity-state { color: var(--text-muted); font-size: 11px; }
+.qiaomu-agent__activity.is-running .qiaomu-agent__activity-icon { color: var(--interactive-accent); }
+.qiaomu-agent__activity.is-failed .qiaomu-agent__activity-icon { color: var(--text-error); }
+.qiaomu-agent__activity pre { margin: 0; padding: 10px; background: transparent; white-space: pre-wrap; font-size: 12px; max-height: 260px; overflow: auto; }
+
+.qiaomu-agent__composer { padding: 8px 12px 14px; background: var(--background-primary); }
+.qiaomu-agent__composer-box { padding: 10px; border: 1px solid var(--background-modifier-border-hover); border-radius: 16px; background: var(--background-primary); }
+.qiaomu-agent__composer-box:focus-within { border-color: var(--text-muted); }
+.qiaomu-agent__context-row { display: flex; min-width: 0; padding: 0 2px 6px; }
+.qiaomu-agent__context { display: flex; align-items: center; gap: 5px; min-width: 0; max-width: 100%; padding: 3px 7px; color: var(--text-muted); background: var(--background-secondary); border-radius: 6px; font-size: 12px; }
+.qiaomu-agent__context svg { display: block; width: 13px; height: 13px; }
+.qiaomu-agent__context > span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.qiaomu-agent__toolbar { display: flex; align-items: center; gap: 3px; margin-top: 8px; min-width: 0; }
+.qiaomu-agent__chip, .qiaomu-agent__mode { min-width: 0; min-height: 30px; padding-inline: 5px; border: 0; border-radius: 6px; background: transparent; box-shadow: none; color: var(--text-muted); font-size: 12px; }
+.qiaomu-agent__chip { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.qiaomu-agent__chip { max-width: 24%; }
+.qiaomu-agent__mode { max-width: 92px; }
+.qiaomu-agent__mode-label { flex: 0 0 auto; }
+.qiaomu-agent__toolbar .qiaomu-agent__backend { margin-left: auto; min-width: 0; max-width: 38%; font-size: 12px; font-weight: 500; padding-inline: 4px; }
+.qiaomu-agent__input-label { display: block; }
+.qiaomu-agent__input { display: block; width: 100%; min-height: 58px; max-height: 180px; resize: none; padding: 4px 3px; border: 0; background: transparent; box-shadow: none; font-family: inherit; font-size: 14px; line-height: 1.65; }
+.qiaomu-agent__input:focus { box-shadow: none; }
+.qiaomu-agent__send { display: grid; place-items: center; width: 30px; height: 30px; padding: 0; border: 0; border-radius: 50%; flex: 0 0 auto; background: var(--text-normal); color: var(--background-primary); box-shadow: none; }
+.qiaomu-agent button:focus-visible, .qiaomu-agent select:focus-visible, .qiaomu-agent summary:focus-visible { outline: 2px solid var(--interactive-accent); outline-offset: 2px; }
+.qiaomu-agent button:disabled { opacity: .45; }
+.qiaomu-agent__send svg { width: 15px; height: 15px; }
+.qiaomu-agent__sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+.qiaomu-agent-settings textarea { width: min(520px, 100%); }
+.qiaomu-agent-settings__tabs { display: flex; gap: 4px; margin: 16px 0 18px; padding: 4px; border-radius: 10px; background: var(--background-secondary); }
+.qiaomu-agent-settings__tab { flex: 1; min-width: 0; min-height: 36px; padding: 4px 8px; border: 0; border-radius: 7px; background: transparent; box-shadow: none; color: var(--text-muted); }
+.qiaomu-agent-settings__tab.is-active { background: var(--background-primary); color: var(--text-normal); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); }
+.is-mobile .qiaomu-agent-settings__tab { min-height: 44px; }
+.qiaomu-agent-settings__body > h3:first-child { margin-top: 0; }
+.qiaomu-agent-settings__disclosure { margin: 18px 0 8px; }
+.qiaomu-agent-settings__disclosure > summary { cursor: pointer; color: var(--text-muted); font-weight: var(--font-semibold); }
+.qiaomu-agent-settings__disclosure-body { padding: 8px 12px 0; }
+.qiaomu-agent-settings .setting-item { padding: 14px 0; }
+.qiaomu-agent-settings .setting-item-description { line-height: 1.5; }
+.qiaomu-agent-settings .setting-item-control { min-width: 0; }
+.qiaomu-agent-settings select { max-width: min(320px, 100%); }
+@media (max-width: 520px) {
+  .qiaomu-agent-settings .setting-item { flex-wrap: wrap; gap: 8px; }
+  .qiaomu-agent-settings .setting-item-control { flex: 1 1 100%; justify-content: flex-start; }
+  .qiaomu-agent-settings select, .qiaomu-agent-settings input { width: 100%; max-width: 100%; }
+}
+.qiaomu-agent-settings__large-input, .qiaomu-agent-settings__json { font-family: var(--font-monospace); line-height: 1.55; }
+.qiaomu-agent-settings__advanced { margin-top: 28px; padding: 12px 0; border-top: 1px solid var(--qiaomu-line); }
+.qiaomu-agent-settings__advanced summary { cursor: pointer; font-weight: var(--font-semibold); }
+.qiaomu-agent-settings__json { display: block; width: 100%; margin-top: 10px; }
+.qiaomu-agent-settings__feedback { min-height: 20px; padding-top: 5px; color: var(--text-success); font-size: 12px; }
+.qiaomu-agent-settings__feedback.is-error { color: var(--text-error); }
+
+.qiaomu-agent-connect-modal { width: min(760px, calc(100vw - 32px)); }
+
+/* Inline rewrite: small host dialog, neutral controls, readable before/after. */
+.modal.qa-inline-edit-modal { width: min(640px, calc(100vw - 24px)); }
+.qa-inline-edit-modal .modal-content { display: grid; gap: 14px; }
+.qa-inline-edit-modal .modal-title { font-size: 18px; font-weight: 600; }
+.qa-inline-edit-context { color: var(--text-muted); font-size: 12px; overflow-wrap: anywhere; }
+.qa-inline-edit-modal textarea.qa-inline-edit-input { display: block; width: 100%; min-height: 86px; padding: 10px 12px; resize: vertical; border: 1px solid var(--background-modifier-border); border-radius: 8px; background: var(--background-primary); color: var(--text-normal); box-shadow: none; font: inherit; }
+.qa-inline-edit-modal textarea.qa-inline-edit-input:focus { border-color: var(--text-muted); outline: 2px solid color-mix(in srgb, var(--text-normal) 12%, transparent); outline-offset: 1px; box-shadow: none !important; }
+.qa-inline-edit-presets { display: flex; flex-wrap: wrap; gap: 6px; margin-top: -7px; }
+.qa-inline-edit-modal .qa-inline-edit-presets button { min-height: 28px; padding: 4px 9px; border: 1px solid var(--background-modifier-border); border-radius: 6px; background: var(--background-primary); color: var(--text-muted); box-shadow: none; font-size: 12px; }
+.qa-inline-edit-modal .qa-inline-edit-presets button:hover { color: var(--text-normal); border-color: var(--background-modifier-border-hover); }
+.qa-inline-edit-original, .qa-inline-edit-preview { max-height: min(38dvh, 340px); overflow: auto; padding: 14px; border: 1px solid var(--background-modifier-border); border-radius: 8px; background: var(--background-secondary); color: var(--text-normal); font-family: var(--font-text); font-size: 14px; line-height: 1.7; white-space: pre-wrap; overflow-wrap: anywhere; }
+.qa-inline-edit-original { color: var(--text-muted); }
+.qa-inline-edit-del { color: var(--text-muted); text-decoration: line-through; background: color-mix(in srgb, var(--text-normal) 8%, transparent); }
+.qa-inline-edit-add { color: var(--text-normal); background: color-mix(in srgb, var(--text-normal) 16%, transparent); border-radius: 2px; }
+.qa-inline-edit-error { color: var(--text-error); font-size: 13px; }
+.qa-inline-edit-status { color: var(--text-muted); font-size: 13px; }
+.qa-inline-edit-modal .setting-item { padding: 0; border: 0; }
+.qa-inline-edit-modal .setting-item-control { width: 100%; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+.qa-inline-edit-modal button.mod-cta, .qa-inline-edit-modal button.mod-cta:hover { background: var(--text-normal); color: var(--background-primary); box-shadow: none; }
+.qa-inline-edit-modal button:focus-visible { outline: 2px solid var(--text-normal); outline-offset: 2px; }
+.qiaomu-agent-connect-modal .modal-content { padding: 28px 30px 22px; }
+.qiaomu-agent-connect-modal h2 { margin: 0 0 5px; font-size: 24px; letter-spacing: -.02em; }
+.qiaomu-agent-connect__subtitle { margin: 0 0 24px; color: var(--text-muted); }
+.qiaomu-agent-connect__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(112px, 1fr)); gap: 10px; }
+.qiaomu-agent-connect__card { position: relative; display: flex; min-width: 0; min-height: 118px; flex-direction: column; align-items: flex-start; justify-content: flex-end; gap: 5px; padding: 14px; border: 1px solid var(--background-modifier-border); border-radius: 14px; background: var(--background-primary); box-shadow: none; text-align: left; }
+.qiaomu-agent-connect__card:hover { border-color: var(--background-modifier-border-hover); background: var(--background-secondary-alt); }
+.qiaomu-agent-connect__card.is-selected { border-color: var(--text-normal); box-shadow: inset 0 0 0 1px var(--text-normal); }
+.qiaomu-agent-connect__card.is-unavailable { opacity: .58; }
+.qiaomu-agent-connect__card-icon { display: grid; width: 32px; height: 32px; place-items: center; margin-bottom: auto; border-radius: 9px; background: var(--background-secondary); color: var(--text-normal); }
+.qiaomu-agent-connect__card-icon svg { width: 17px; height: 17px; }
+.qiaomu-agent-connect__card-label { max-width: 100%; overflow: hidden; color: var(--text-normal); font-size: 14px; font-weight: var(--font-semibold); text-overflow: ellipsis; white-space: nowrap; }
+.qiaomu-agent-connect__card-state { max-width: 100%; overflow: hidden; color: var(--text-muted); font-size: 10px; text-overflow: ellipsis; white-space: nowrap; }
+.qiaomu-agent-connect__check { position: absolute; top: 9px; right: 9px; display: grid; width: 19px; height: 19px; place-items: center; border-radius: 50%; background: var(--text-normal); color: var(--background-primary); }
+.qiaomu-agent-connect__check svg { width: 12px; height: 12px; }
+.qiaomu-agent-connect__details { margin-top: 18px; padding: 16px 18px; border: 1px solid var(--background-modifier-border); border-radius: 14px; background: var(--background-primary-alt); }
+.qiaomu-agent-connect__details-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.qiaomu-agent-connect__details-heading > span { flex: 0 0 auto; padding: 3px 7px; border-radius: 999px; font-size: 10px; }
+.qiaomu-agent-connect__details-heading .is-ready { background: color-mix(in srgb, var(--color-green) 14%, transparent); color: var(--color-green); }
+.qiaomu-agent-connect__details-heading .is-warning { background: color-mix(in srgb, var(--color-orange) 14%, transparent); color: var(--color-orange); }
+.qiaomu-agent-connect__details p { margin: 8px 0 0; color: var(--text-muted); line-height: 1.55; }
+.qiaomu-agent-connect__facts { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.qiaomu-agent-connect__facts span { padding: 4px 7px; border-radius: 6px; background: var(--background-secondary); color: var(--text-muted); font-family: var(--font-monospace); font-size: 10px; }
+.qiaomu-agent-connect__hint { color: var(--text-warning) !important; }
+.qiaomu-agent-connect__privacy { display: flex; align-items: center; gap: 7px; margin-top: 16px; color: var(--text-muted); font-size: 11px; }
+.qiaomu-agent-connect__privacy svg { width: 14px; height: 14px; }
+.qiaomu-agent-connect__footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 22px -30px -22px; padding: 14px 30px; border-top: 1px solid var(--background-modifier-border); }
+.qiaomu-agent-connect__actions { display: flex; gap: 8px; }
+
+@keyframes qiaomu-pulse { 0%, 100% { opacity: .45; } 50% { opacity: 1; } }
+
+@container (max-width: 300px) {
+  .qiaomu-agent__messages { padding-inline: 12px; }
+  .qiaomu-agent__toolbar { flex-wrap: wrap; }
+  .qiaomu-agent__toolbar .qiaomu-agent__backend { max-width: 40%; }
+}
+
+@media (max-width: 600px) {
+  .qiaomu-agent-connect-modal .modal-content { padding: 22px 18px 16px; }
+  .qiaomu-agent-connect__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .qiaomu-agent-connect__card { min-height: 104px; }
+  .qiaomu-agent-connect__footer { margin: 18px -18px -16px; padding: 12px 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .qiaomu-agent__messages { scroll-behavior: auto; }
+  .qiaomu-agent__thinking { animation: none; }
+}
+
+/* Hide note metadata only while this plugin owns the active view; no Home dependency. */
+body:has(.workspace-leaf.mod-active > .workspace-leaf-content:is(
+  [data-type="qiaomu-agent-view"]
+)) .status-bar {
+  display: none;
+}
+
+/* Native pane dividers: the tab strip follows the host; content follows its panel. */
+.workspace-leaf-resize-handle.qiaomu-pane-divider {
+  --qiaomu-divider-current: var(--qiaomu-divider-color);
+  --qiaomu-divider-host: var(--divider-color);
+  --qiaomu-divider-paint: linear-gradient(var(--qiaomu-divider-direction), var(--qiaomu-divider-host) 0px, var(--qiaomu-divider-host) var(--qiaomu-divider-start), var(--qiaomu-divider-current) var(--qiaomu-divider-start), var(--qiaomu-divider-current) var(--qiaomu-divider-end), var(--qiaomu-divider-host) var(--qiaomu-divider-end));
+  border-image-source: var(--qiaomu-divider-paint);
+  border-image-slice: 1;
+}
+.workspace-leaf-resize-handle.qiaomu-pane-divider:is(:hover,:active,.is-active,.mobile-tap) {
+  --qiaomu-divider-current: var(--qiaomu-divider-hover);
+  --qiaomu-divider-host: var(--divider-color-hover);
+  background-color: transparent;
+  background-image: var(--qiaomu-divider-paint);
+}
+
+/* Offline update notes shared by the Qiaomu plugin family. */
+.modal.qiaomu-update-notes { width: 520px; max-width: calc(100vw - 32px); padding: 28px; border: 1px solid var(--background-modifier-border); border-radius: 14px; background: var(--background-primary); color: var(--text-normal); }
+.qiaomu-update-notes .modal-title { margin: 0; font-size: 20px; font-weight: 600; line-height: 1.4; padding-inline-end: 20px; }
+.qiaomu-update-notes .modal-content { margin: 0; overflow-wrap: anywhere; }
+.qiaomu-update-notes-version { display: inline-block; margin: 12px 0 20px; padding: 3px 8px; border-radius: 5px; background: var(--background-secondary); color: var(--text-muted); font-size: 12px; line-height: 1.5; }
+.qiaomu-update-notes-section h3 { margin: 20px 0 8px; font-size: 14px; }
+.qiaomu-update-notes-section ul { margin: 0 0 20px; padding-inline-start: 20px; }
+.qiaomu-update-notes-section li { margin: 0 0 10px; padding-inline-start: 3px; font-size: 14px; line-height: 1.7; }
+.qiaomu-update-notes-footer { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--background-modifier-border); }
+.qiaomu-update-notes-option { display: flex; align-items: center; gap: 8px; color: var(--text-muted); font-size: 12px; line-height: 1.6; cursor: pointer; }
+.qiaomu-update-notes-option input { margin: 0; accent-color: var(--text-normal); flex-shrink: 0; }
+.qiaomu-update-notes button.qiaomu-update-notes-done { min-height: 36px; padding: 8px 18px; background: var(--text-normal); color: var(--background-primary); border: 0; border-radius: 7px; box-shadow: none; font-weight: 500; cursor: pointer; }
+button.qiaomu-update-notes-link { display: inline-flex; align-items: center; gap: 6px; min-height: 32px; padding: 5px 10px; background: var(--background-primary); color: var(--text-normal); border: 1px solid var(--background-modifier-border); border-radius: 6px; box-shadow: none; font-size: 13px; cursor: pointer; }
+.qiaomu-update-notes-link svg { width: 14px; height: 14px; }
+button.qiaomu-update-notes-link:hover { background: var(--background-modifier-hover); }
+.qiaomu-update-notes button:focus-visible, button.qiaomu-update-notes-link:focus-visible, .qiaomu-update-notes input:focus-visible { outline: 2px solid var(--text-muted); outline-offset: 3px; }
+@media (max-width: 420px) { .modal.qiaomu-update-notes { padding: 22px; } .qiaomu-update-notes-footer { gap: 20px; } }
+
+.qiaomu-update-notes-option { --checkbox-color: var(--text-normal); --checkbox-color-hover: var(--text-normal); --checkbox-marker-color: var(--background-primary); }
