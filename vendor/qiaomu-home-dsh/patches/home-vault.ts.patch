@@ -1,0 +1,38 @@
+--- a/src/client/home-vault.ts
++++ b/src/client/home-vault.ts
+@@ -70,7 +70,7 @@
+       },
+     };
+   }
+-  private ensureFolder(path: string) {
++  private ensureFolder(path: string): TFolder {
+     let folder = this.files.get(path);
+     if (folder instanceof TFolder) return folder;
+     folder = new TFolder(path);
+@@ -288,7 +288,7 @@
+         /^\uFEFF?---\r?\n([\s\S]*?)\r?\n(?:---|\.\.\.)(?:\r?\n|$)/.exec(text);
+       if (!match && /^\uFEFF?---(?:\r?\n|$)/.test(text))
+         throw Error("The note has incomplete frontmatter");
+-      const doc = match ? parseDocument(match[1]) : new Document({});
++      const doc = match ? parseDocument(match[1]!) : new Document({});
+       if (doc.errors.length || (doc.contents && !isMap(doc.contents)))
+         throw Error("The note has invalid frontmatter");
+       const current = doc.toJS({ maxAliasCount: 20 }) || {};
+@@ -356,7 +356,7 @@
+     this.blobs.delete(path);
+   }
+   resolveLink(link: string, source = "") {
+-    let clean = link.split("#")[0];
++    let clean = link.split("#")[0] ?? "";
+     try {
+       clean = decodeURIComponent(clean);
+     } catch {}
+@@ -385,7 +385,7 @@
+         const target = this.resolveLink(link, file.path);
+         const index = target ? resolved[file.path] : unresolved[file.path],
+           key = target?.path || link;
+-        index[key] = (index[key] || 0) + 1;
++        index![key] = (index![key] || 0) + 1;
+       }
+     }
+     this.metadataCache.resolvedLinks = resolved;

@@ -1,0 +1,60 @@
+/* Qiaomu RSS palette colors adapted to Agent semantic surfaces. Auto inherits the host. */
+:is(.qiaomu-agent,.qa-font-preview)[data-qa-theme="light"] {
+  color-scheme:light;
+  --qa-palette-fg:#292929; --qa-palette-muted:#626262; --qa-palette-faint:#737373; --qa-palette-bg:#fff; --qa-palette-subtle:#f7f7f7; --qa-palette-hover:#efefef; --qa-palette-border:#dedede; --qa-palette-border-strong:#bdbdbd; --qa-palette-ring:rgba(0,0,0,.12); --qa-palette-error:#b42332;
+  --text-selection:rgba(0,0,0,.12); --text-on-accent:#fff; --text-on-accent-inverted:#fff;
+}
+:is(.qiaomu-agent,.qa-font-preview)[data-qa-theme="paper"] {
+  color-scheme:light;
+  --qa-palette-fg:#2e2a24; --qa-palette-muted:#6b6358; --qa-palette-faint:#7d7468; --qa-palette-bg:#f8f5ee; --qa-palette-subtle:#f1ece2; --qa-palette-hover:#eae4d8; --qa-palette-border:#e2dace; --qa-palette-border-strong:#c9bfae; --qa-palette-ring:rgba(46,42,36,.12); --qa-palette-error:#a42e35;
+  --text-selection:rgba(120,96,56,.16); --text-on-accent:#f8f5ee; --text-on-accent-inverted:#f8f5ee;
+}
+:is(.qiaomu-agent,.qa-font-preview)[data-qa-theme="sage"] {
+  color-scheme:light;
+  --qa-palette-fg:#27322c; --qa-palette-muted:#56645b; --qa-palette-faint:#6c7a71; --qa-palette-bg:#edf2ec; --qa-palette-subtle:#e4ebe3; --qa-palette-hover:#dde5dc; --qa-palette-border:#d3ddd2; --qa-palette-border-strong:#b5c3b4; --qa-palette-ring:rgba(39,50,44,.12); --qa-palette-error:#a42e35;
+  --text-selection:rgba(60,110,80,.16); --text-on-accent:#edf2ec; --text-on-accent-inverted:#edf2ec;
+}
+:is(.qiaomu-agent,.qa-font-preview)[data-qa-theme="mist"] {
+  color-scheme:light;
+  --qa-palette-fg:#1f2933; --qa-palette-muted:#52606d; --qa-palette-faint:#6b7785; --qa-palette-bg:#f3f5f8; --qa-palette-subtle:#eaeef3; --qa-palette-hover:#e2e7ee; --qa-palette-border:#d9dfe7; --qa-palette-border-strong:#b9c2ce; --qa-palette-ring:rgba(31,41,51,.12); --qa-palette-error:#b42332;
+  --text-selection:rgba(55,90,140,.14); --text-on-accent:#f3f5f8; --text-on-accent-inverted:#f3f5f8;
+}
+:is(.qiaomu-agent,.qa-font-preview)[data-qa-theme="dark"] {
+  color-scheme:dark;
+  --qa-palette-fg:#d5dce6; --qa-palette-muted:#98a3b3; --qa-palette-faint:#7a8595; --qa-palette-bg:#171c24; --qa-palette-subtle:#1d232d; --qa-palette-hover:#262d38; --qa-palette-border:#2a313c; --qa-palette-border-strong:#414a58; --qa-palette-ring:rgba(213,220,230,.16); --qa-palette-error:#ff939b;
+  --text-selection:rgba(150,180,220,.22); --text-on-accent:#171c24; --text-on-accent-inverted:#171c24;
+}
+:is(.qiaomu-agent,.qa-font-preview)[data-qa-theme="black"] {
+  color-scheme:dark;
+  --qa-palette-fg:#c8c8c8; --qa-palette-muted:#8e8e8e; --qa-palette-faint:#6e6e6e; --qa-palette-bg:#000; --qa-palette-subtle:#0d0d0d; --qa-palette-hover:#1a1a1a; --qa-palette-border:#222; --qa-palette-border-strong:#3a3a3a; --qa-palette-ring:rgba(200,200,200,.16); --qa-palette-error:#ff939b;
+  --text-selection:rgba(255,255,255,.18); --text-on-accent:#000; --text-on-accent-inverted:#000;
+}
+:is(.qiaomu-agent,.qa-font-preview):is([data-qa-theme="light"],[data-qa-theme="paper"],[data-qa-theme="sage"],[data-qa-theme="mist"],[data-qa-theme="dark"],[data-qa-theme="black"]) {
+  --setting-items-background:var(--qa-palette-subtle); --setting-items-border-color:var(--qa-palette-border);
+  --background-primary:var(--qa-palette-bg); --background-primary-alt:var(--qa-palette-subtle); --background-secondary:var(--qa-palette-subtle); --background-secondary-alt:var(--qa-palette-subtle);
+  --background-modifier-hover:var(--qa-palette-hover); --background-modifier-border:var(--qa-palette-border); --background-modifier-border-hover:var(--qa-palette-border-strong); --background-modifier-form-field:var(--qa-palette-bg);
+  --text-normal:var(--qa-palette-fg); --text-muted:var(--qa-palette-muted); --text-faint:var(--qa-palette-faint); --text-error:var(--qa-palette-error);
+  --h1-color:var(--qa-palette-fg); --h2-color:var(--qa-palette-fg); --h3-color:var(--qa-palette-fg); --h4-color:var(--qa-palette-fg); --h5-color:var(--qa-palette-fg); --h6-color:var(--qa-palette-fg);
+  --bold-color:var(--qa-palette-fg); --italic-color:var(--qa-palette-fg); --code-normal:var(--qa-palette-fg); --code-background:var(--qa-palette-subtle); --blockquote-color:var(--qa-palette-muted);
+  --icon-color:var(--qa-palette-muted); --icon-color-hover:var(--qa-palette-fg); --icon-color-active:var(--qa-palette-fg); --icon-color-focused:var(--qa-palette-fg);
+  --interactive-normal:var(--qa-palette-bg); --interactive-hover:var(--qa-palette-hover); --interactive-accent-hover:var(--qa-palette-muted); --color-accent-2:var(--qa-palette-muted); --checkbox-color-hover:var(--qa-palette-muted);
+  --dropdown-background:var(--qa-palette-subtle); --dropdown-background-hover:var(--qa-palette-hover); --input-placeholder-color:var(--qa-palette-faint);
+  --slider-track-background:var(--qa-palette-border-strong); --slider-thumb-background:var(--qa-palette-fg); --slider-thumb-background-hover:var(--qa-palette-fg); --slider-thumb-border-color:var(--qa-palette-border); --slider-fill-background:var(--qa-palette-muted);
+  color:var(--qa-palette-fg); background:var(--qa-palette-bg);
+}
+
+:is(.qiaomu-agent,.qa-font-preview)[data-qa-theme] {
+  --interactive-accent:var(--qa-palette-fg); --text-accent:var(--qa-palette-fg); --text-accent-hover:var(--qa-palette-muted);
+  --link-color:var(--qa-palette-fg); --link-color-hover:var(--qa-palette-muted); --link-external-color:var(--qa-palette-fg);
+  --qa-ink:var(--qa-palette-fg); --qa-muted:var(--qa-palette-muted); --qa-line:var(--qa-palette-border); --qa-surface:var(--qa-palette-subtle); --qa-soft:var(--qa-palette-bg);
+  --code-comment:var(--qa-palette-muted); --code-punctuation:var(--qa-palette-muted);
+  --code-keyword:#765086; --code-function:#34628b; --code-string:#326646; --code-value:#86552d;
+  --code-operator:var(--code-keyword); --code-property:var(--code-function); --code-tag:var(--code-keyword); --code-important:var(--code-value);
+  --color-green:#326646; --color-green-rgb:50,102,70; --color-red:#a42e35; --color-red-rgb:164,46,53;
+  --text-success:var(--color-green); --text-warning:#86552d;
+}
+:is(.qiaomu-agent,.qa-font-preview):is([data-qa-theme="dark"],[data-qa-theme="black"]) {
+  --code-keyword:#c4a4d3; --code-function:#9dbfe1; --code-string:#a3c7ae; --code-value:#d8b795;
+  --color-green:#a3c7ae; --color-green-rgb:163,199,174; --color-red:#ff939b; --color-red-rgb:255,147,155;
+  --text-warning:#d8b795;
+}

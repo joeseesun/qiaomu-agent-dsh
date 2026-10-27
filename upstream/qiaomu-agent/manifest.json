@@ -1,0 +1,10 @@
+{
+  "id": "qiaomu-agent",
+  "name": "Qiaomu Agent",
+  "version": "0.6.7",
+  "minAppVersion": "1.11.4",
+  "description": "Chat with your vault using local AI agents or model APIs.",
+  "author": "向阳乔木",
+  "authorUrl": "https://github.com/joeseesun",
+  "isDesktopOnly": false
+}

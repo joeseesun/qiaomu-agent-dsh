@@ -1,0 +1,7 @@
+# Third-party notices
+
+- **Qiaomu Agent 0.6.7**, commit `785bdce9f62262e252b6d92547950d9a5d3adfd4`, MIT: unchanged source, CSS, tests, prompt data and notices in `upstream/qiaomu-agent/`. Its [original notices](upstream/qiaomu-agent/THIRD_PARTY_NOTICES.md) retain Vercel AI Elements (Apache-2.0), shadcn/ui (MIT), Pele (MIT/ISC), Lobe Icons (MIT), and Yao prompt (CC BY 4.0) attribution. Their claims describe the original Obsidian package, not this adaptation's runtime state.
+- **Qiaomu Home DSH**, commit `fa980f4644dbddee4b88ab31259b847884e1d78a`, GPL-3.0: scoped DOM/lifecycle/vault/storage/workspace boundary files listed in `vendor/qiaomu-home-dsh/source.json`. Local modifications tighten strict TypeScript checks; patch files preserve the change record. License in `vendor/qiaomu-home-dsh/LICENSE`. This combined adaptation is GPL-3.0-or-later.
+- **DOMPurify 3.4.17**, Apache-2.0 OR MPL-2.0: Markdown and original Pele SVG sanitization. License copies in `licenses/`.
+- **Mermaid 12.2.0**, MIT: unlike the Obsidian original, this adaptation bundles a lazy fallback renderer because Harness does not supply Obsidian's `loadMermaid`. No remote scripts are fetched. License in `licenses/mermaid-LICENSE`.
+- AI SDK, React, Lucide, marked, YAML, moment and use-stick-to-bottom are installed dependencies. Upstream legal comments remain in the component build; final distributable license inventory is a release gate.
